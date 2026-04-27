@@ -5,7 +5,7 @@
 
 # E-Commerce Image Generator
 
-**GPT-Image-2 驱动的电商素材一键生成工具**
+**可在任意Agent上驱动 GPT-Image-2 生成电商素材的一键生成工具Skill**
 
 **想了解更多最新AI行业动态，AI+电商/广告的行业实践方法，人与AI如何协作共生的思考，请关注公众号：【新西楼】**
 ![qrcode_for_gh_e3b954bd3859_258](https://github.com/user-attachments/assets/d8f068d9-c4f8-46c7-914c-fbcab5d52f2a)
