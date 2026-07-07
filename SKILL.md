@@ -168,3 +168,40 @@ When generating UGC, livestream, or social media content, these rules are critic
 - **Specify material**: describe textures explicitly (frosted glass, brushed metal, matte finish)
 - **Lighting matters**: always include lighting direction and quality
 - **Use references**: passing a product photo via `--image` significantly improves consistency
+
+## Style Blacklist
+
+某些风格与特定品类产品气质严重冲突，**严禁对以下品类的产品使用对应的黑名单风格**：
+
+### Electronics / Tech 品类（数码、3C、智能硬件、音频设备）
+
+**黑名单风格：**
+
+| 黑名单风格 | 英文关键词 | 原因 |
+|---|---|---|
+| 户外生活方式杂志风 | outdoor lifestyle, lifestyle magazine, bokeh outdoor, golden hour lifestyle | 科技产品用"湖畔野餐"氛围图会显得不伦不类，削弱产品专业感 |
+| 奢华氛围渲染 | luxury atmospherics, smoke, perfume aesthetic, velvet | 美妆/香水专属氛围，与硬核科技产品调性完全相反 |
+| 花卉装饰风 | dried flowers, botanical, floral pattern, rose petals | 软性美妆视觉语言，不适合科技硬件产品 |
+| 手写字体风 | handwritten font, script font, casual writing | 科技产品需要现代感无衬线/等宽字体，手写风显得不够专业 |
+
+**推荐替代风格：**
+
+| 推荐风格 | 英文关键词 | 适用场景 |
+|---|---|---|
+| 硬核科技风（中等明度） | tech blueprint, cyan grid, dark gray background (NOT pure black), isometric tech lines, subtle geometric patterns | 对比图、信息图、规格图 |
+| 工业设计风 | industrial design, matte metal texture, clean studio, soft directional lighting on metal | 产品主图、细节图 |
+| 极简数据风 | minimal data visualization, clean sans-serif typography, structured grid layout, monospace accent | A+信息图、对比图、参数图 |
+| 未来科技感 | subtle neon accent lines, holographic gradient overlay (use sparingly), dark charcoal with glow | 海报、创意概念图 |
+
+**关键规则：**
+- 科技产品背景亮度不低于 `#2A2A2A`（深灰），不使用纯黑 `#000000` 也不使用纯白户外场景
+- 文字排版必须使用现代无衬线字体（如 Helvetica, SF Pro, Inter），标题可用等宽字体（如 SF Mono, JetBrains Mono）增加科技质感
+- 配色以冷色调为主（深灰/碳灰 + 青色/电蓝点缀），暖色仅作为点缀使用
+
+### 其他品类黑名单（按需扩展）
+
+| 品类 | 黑名单风格 | 原因 |
+|---|---|---|
+| Beauty / Skincare | industrial, blueprint, tech grid | 硬核工业风与美妆柔感冲突 |
+| Food | dark moody, dramatic shadow | 食品需要明亮温暖的食欲感 |
+| Fashion | flat lay with ruler, spec annotation | 时尚不需要工程标注感 |
