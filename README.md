@@ -98,7 +98,8 @@ UGC、直播间、社交媒体场景内置 CCD 复古胶片质感、可见瑕疵
 
 ### 前置要求
 
-- [Codex CLI](https://github.com/openai/codex) 已安装并登录
+- 默认模式：[Codex CLI](https://github.com/openai/codex) 已安装并登录
+- 可选 Atlas Cloud 模式：`curl`、`jq`，以及 `ATLASCLOUD_API_KEY`
 - （可选）Claude Code 用于 Skill 模式自动匹配
 
 ### 安装
@@ -124,6 +125,27 @@ git clone https://github.com/buluslan/gpt-image2-ecommerce.git
 ```
 
 Agent 会自动匹配模板、组装 prompt、调用 Codex CLI 生成图片。
+
+### 可选：Atlas Cloud API
+
+默认的 `auto` 模式仍使用本地 HTTP 服务或 Codex CLI。需要直接调用 API 时，可显式选择 Atlas Cloud；脚本使用 GPT-Image-2 文生图模型，传入参考图时自动切换到编辑模型。
+
+```bash
+export ATLASCLOUD_API_KEY="your-api-key"
+
+# 文生图
+bash scripts/imagegen.sh --mode atlas \
+  --prompt "studio product photo of a frosted serum bottle" \
+  --output ./serum.jpg
+
+# 带参考图的商品编辑
+bash scripts/imagegen.sh --mode atlas \
+  --prompt "place this product on a clean marble counter" \
+  --image ./product.jpg \
+  --output ./product-marble.jpg
+```
+
+Atlas 模式只提交一次生成 `POST`，随后通过有界 `GET` 轮询结果，不会自动重试可能计费的生成请求。可通过 `ATLASCLOUD_IMAGE_SIZE`、`ATLASCLOUD_IMAGE_QUALITY` 和 `ATLASCLOUD_OUTPUT_FORMAT` 调整模型参数。
 
 ### 使用方式二：直接命令行
 
@@ -173,7 +195,7 @@ gpt-image2-ecommerce/
     → 意图识别（场景类型 + 产品信息 + 风格偏好）
     → 模板匹配（从 25 个模板中匹配最佳）
     → Prompt 组装（填充变量 + 应用变体 + 精简输出）
-    → 调用生图（codex exec / HTTP 服务）
+    → 调用生图（codex exec / HTTP 服务 / 可选 Atlas Cloud）
     → 返回结果（清理临时文件 + 优化建议）
 ```
 
