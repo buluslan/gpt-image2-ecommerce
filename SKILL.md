@@ -104,6 +104,21 @@ Run the generation script:
 bash scripts/imagegen.sh --prompt-file <(echo '<assembled_json>') --mode auto
 ```
 
+`auto` preserves the existing Codex CLI/HTTP behavior. Atlas Cloud is an optional,
+explicit API provider when `ATLASCLOUD_API_KEY` is configured:
+
+```bash
+export ATLASCLOUD_API_KEY="your-api-key"
+bash scripts/imagegen.sh \
+  --prompt-file <(echo '<assembled_json>') \
+  --mode atlas \
+  --output ./product-image.jpg
+```
+
+Pass `--image /path/to/ref.png` to use the Atlas GPT-Image-2 edit model. Atlas
+mode submits the billable generation POST exactly once and only retries bounded
+prediction/download GET requests.
+
 Or call `codex exec` directly:
 
 **Without reference image:**
