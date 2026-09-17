@@ -260,7 +260,7 @@
 |---|---|---|
 | hyper-realistic | 反而显得假（真照片不需要声明 realistic） | 删除，或写 `natural photographic look` |
 | ultra-realistic | 同上 | 删除 |
-| photorealistic | 同上（过度使用） | 删除，让构图/光线说话 |
+| photorealistic | 堆砌时是 slop（hyper-realistic 8K photorealistic 连写）；**作为媒介意图声明时合法且必要**（官方：目标是真实照片要显式写 photorealistic / real photograph，与 illustration/vector 划界限） | 单独作意图声明可留一处；与 8K/ultra/masterpiece 连写时删 |
 | cinematic | 太泛，什么都叫 cinematic | 写具体（`warm side lighting, shallow depth of field`） |
 | epic | 空话 | 写具体场景 |
 | magical, dreamy | 模糊 | 写具体氛围（`soft morning haze`, `warm backlight`） |

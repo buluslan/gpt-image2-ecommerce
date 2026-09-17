@@ -51,6 +51,10 @@
 
 **总纲**："Name the material, not the adjective. / Set the light explicitly. / Pin the framing."
 
+**两个定位提醒（官方 prompting guide）**：
+- **photorealistic 是意图声明不是质量咒语**——目标是真实照片时官方要求**显式写** `photorealistic` / `real photograph`（与 illustration/vector/diagram 划清媒介界限）；它成为 slop 词只在「堆砌」场景（hyper-realistic 8K photorealistic masterpiece 连写）。黑名单禁的是堆砌，不禁意图声明
+- **相机参数是外观线索（cues）不是物理模拟保证**——`85mm lens look` 引导模型朝那个观感走，别指望焦段/光圈被精确执行；wide/low-light/neon 类场景要写 scale/atmosphere/color，别只堆 mood words
+
 ---
 
 ## 一、反 AI 感工艺
@@ -313,12 +317,15 @@ diffused daylight, even illumination, minimal shadow
 把所有要渲染的文字：
 - 用英文双引号包裹（`"BRAND NAME"`）
 - 转成全大写（`brand name` → `"BRAND NAME"`）
+- 文案是核心交付时用官方强化句式：`(EXACT, verbatim, no extra characters)` + `appears once, perfectly legible`
 
 ```
 render the text "NEW ARRIVAL" on the banner
+Billboard text (EXACT, verbatim, no extra characters): "FRESH AND CLEAN"
+Ensure text appears once and is perfectly legible.
 ```
 
-**为什么有效**：引号告诉模型「这是一个不可拆分的文字单元」，降低它「再创作」的概率（裸写时模型会以为是描述词，可能改字）。ALL CAPS 让每个字母都是同一套像素 pattern，降低混合大小写的复杂度。
+**为什么有效**：引号告诉模型「这是一个不可拆分的文字单元」，降低它「再创作」的概率（裸写时模型会以为是描述词，可能改字）。ALL CAPS 让每个字母都是同一套像素 pattern，降低混合大小写的复杂度。`(EXACT, verbatim...)` 句式是官方 prompting guide 在广告牌示例里的写法——把「逐字、不加字、只出现一次」变成显式三重约束。
 
 #### 招 2：逐字母回退（letter-by-letter spelling）
 
@@ -360,7 +367,7 @@ render exactly the text "SALE 50% OFF", no extra words, no additional text anywh
 
 - **招 1 / 招 2 被官方背书**：官方同样要求「必须出现的文案放引号里」「生僻词/品牌名逐字母拼写」——三招方向不变，2.5 上继续用
 - **新增规则 ①次数与位置**：文案多时说明每段文字出现几次、在哪个位置（`"SALE 50% OFF" once, top-left corner`）——位置不写，模型自己乱摆
-- **新增规则 ②小字密集用中高对比**：官方建议小字/密集信息的图多用 medium 或 high 对比（contrast），低对比小字最先糊
+- **新增规则 ②小字密集对比 quality 档**：官方建议小字/密集信息/多字体的图，**对比 medium 与 high 两档 quality** 再定用哪档（quality 档影响小字渲染质量，这是档位对比不是画面对比度）
 - **能力边界（官方自认）**：2.5 官方 Limitations 原文仍承认 "can still struggle with precise text placement and clarity"——文字渲染依然不是 100%，**兜底原则（5.3 末）不因升级而失效**
 
 ---
@@ -428,6 +435,16 @@ Image 2: background style reference — take only the scene/lighting mood
 ### 7.4 编辑任务一律走 Sunburst
 
 保产品/标签/logo 的编辑是 sunburst 的定义场景（见 `model-routing.md`）——flare 在多次迭代中保持主体一致性的能力弱于 sunburst，编辑类任务不要用 flare 省钱，改错标签的代价比差价大。
+
+### 7.5 迭代纪律（多轮编辑，官方八法之八）
+
+多轮编辑（A+ 逐张改、套图精修、动图帧调整）按三条纪律走：
+
+1. **上一轮输出作为下一轮输入**——每轮基于最新结果改，不要回到最初原图反复改
+2. **每轮只请求一个变更**——一次改两处，出问题分不清是哪处指令引入的
+3. **“same style as before” 可以携带上下文，但关键约束每轮重述**——跨轮的隐式记忆不可靠，漂移都是从「上轮还好这轮没再写」开始的；加新指令前先对比已有结果，别堆指令
+
+官方印证：这正是官方多轮编辑工作流（建起始图 → 单条件微调 → 重申角色约束）的通用模式。
 
 ---
 

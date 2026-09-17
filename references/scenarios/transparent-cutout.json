@@ -30,6 +30,12 @@
   "defaults": {
     "api_params": "requires background=transparent + output_format=png (or webp); relay endpoints expose this as request parameters — api channel passes them through when supported, manual mode notes them in the pack"
   },
+  "acceptance_checklist": [
+    "check the decoded file actually HAS an alpha channel — a drawn checkerboard pattern is NOT transparency (official warning)",
+    "inspect edges: hair / glass / shadows / object boundaries for halos or fringing",
+    "output_compression applies to JPEG/WebP only — never PNG",
+    "for follow-up edits, restate the transparent-background requirement each round or it may come back opaque"
+  ],
   "variants": {
     "webp-transparent": {
       "description": "WebP 透明（更小体积，支持真半透明——动图残影场景优先）",
