@@ -1,0 +1,106 @@
+{
+  "id": "edit-mask",
+  "name": "蒙版/局部编辑（保区域改区域）",
+  "keywords": [
+    "蒙版",
+    "局部编辑",
+    "mask edit",
+    "inpaint",
+    "局部改",
+    "区域编辑",
+    "保留区域"
+  ],
+  "trigger_phrases": [
+    "局部编辑",
+    "只改这一块",
+    "蒙版编辑",
+    "mask edit",
+    "保留这块改那块",
+    "inpaint",
+    "改局部"
+  ],
+  "prompt_template": {
+    "type": "masked regional edit (preserve specified region, modify target region)",
+    "subject": "{product_description}",
+    "preserve_region": "{area_to_keep_unchanged}",
+    "edit_region": "{area_to_modify}",
+    "edit_instruction": "{modification_description}",
+    "quality": "seamless inpainting, no visible boundary,"
+  },
+  "defaults": {
+    "preserve_region": "product body and logo",
+    "edit_region": "background or model",
+    "edit_instruction": "natural-looking modification matching surrounding context"
+  },
+  "variants": {
+    "swap-model": {
+      "description": "换模特保产品（产品+背景不变，只换手持模特）",
+      "overrides": {
+        "preserve_region": "product appearance, background, props",
+        "edit_region": "model only",
+        "edit_instruction": "replace with {new_model_description}, consistent skin tone with lighting"
+      }
+    },
+    "fix-defect": {
+      "description": "修瑕疵（保主体，修反光/脏点/标签歪）",
+      "overrides": {
+        "preserve_region": "overall composition",
+        "edit_region": "defect area",
+        "edit_instruction": "clean up {defect}, match surrounding texture"
+      }
+    },
+    "swap-prop": {
+      "description": "换道具保产品（产品不变，换搭配道具）",
+      "overrides": {
+        "preserve_region": "product, background, lighting",
+        "edit_region": "props only",
+        "edit_instruction": "replace props with {new_props}"
+      }
+    },
+    "extend-canvas": {
+      "description": "扩画布保内容（保原图，向外扩展画面）",
+      "overrides": {
+        "preserve_region": "original frame content",
+        "edit_region": "canvas extension area",
+        "edit_instruction": "extend scene outward, matching perspective and lighting"
+      }
+    }
+  },
+  "category_tips": {
+    "beauty": "换手持模特保瓶身；修瓶盖反光保料体；扩画布补桌面道具",
+    "fashion": "换模特保服装不变（注意服装贴合度因体型调整）；换背景保服装",
+    "electronics": "换使用场景保设备；修屏幕内容保设备外壳",
+    "food": "换餐盘保菜品；修酱汁溢出保菜品摆盘",
+    "home": "换搭配软装保主产品；扩画布补完整家居场景",
+    "jewelry": "换佩戴手/颈保珠宝；修切面反光保镶嵌",
+    "sports": "换运动员保器材；换场地保器材"
+  },
+  "examples": [
+    "Input: 手持口红白底图（原模特为白人女性）。Output: 同一支口红（色号/管身/Logo/背景完全不变），仅把手部模特换成东南亚肤色女性手部，光线一致，无缝衔接，1080x1350px",
+    "Input: 保温杯桌面图（杯口有反光瑕疵）。Output: 同一个杯子同一场景，仅修复杯口反光过曝区域，金属质感与周围一致，无修补痕迹，1080x1080px",
+    "Input: 餐盘菜品正方形图。Output: 同一菜品/餐盘不变，向四周扩展画布补充完整餐桌场景（刀叉/餐巾/装饰），透视与光线一致，适合亚马逊副图横向构图，2000x1500px"
+  ],
+  "anti_ai_tips": "常见翻车：保留区与编辑区交界出现接缝/色差、被改区域与原图光照不一致、preserve region 被误改。修复：明确列出 preserve 清单，强调 'no visible boundary between preserved and edited regions'。",
+  "supports_image_reference": true,
+  "platform_constraints": {
+    "amazon": {
+      "main_image_rule": "若编辑后用作主图，仍须满足纯白底/占比/无文字；扩画布不改变主图比例要求",
+      "note": "换模特后注意亚马逊模特肤色多元合规，避免歧视性呈现"
+    }
+  },
+  "ref_roles": [
+    {
+      "index": 0,
+      "role": "source image — apply masked edit: preserve {preserve_region}, modify {edit_region}",
+      "preserve": [
+        "preserve_region as specified",
+        "overall composition outside edit_region",
+        "lighting direction",
+        "color grading"
+      ],
+      "instruction": "Use the reference image as the source. Regions listed in preserve_region MUST remain pixel-identical. Only the edit_region may be modified per edit_instruction. The boundary between preserved and edited regions must be invisible — seamless inpainting with matching lighting, texture, color grading, and noise."
+    }
+  ],
+  "campaign_id": "",
+  "model_hint": "gpt-image-2.5-sunburst"
+}

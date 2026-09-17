@@ -1,0 +1,93 @@
+{
+  "id": "try-on-virtual",
+  "name": "虚拟试穿/产品融入场景",
+  "keywords": [
+    "试穿",
+    "融入",
+    "虚拟试穿",
+    "try on",
+    "场景融合",
+    "产品融入",
+    "product placement"
+  ],
+  "trigger_phrases": [
+    "虚拟试穿",
+    "产品融入场景",
+    "try on",
+    "场景融合",
+    "产品植入",
+    "场景化融入"
+  ],
+  "prompt_template": {
+    "type": "product integration / virtual try-on",
+    "subject": "{product_description} naturally integrated into {scene_type}",
+    "setting": "{detailed_scene}",
+    "atmosphere": "{mood_and_lighting}",
+    "integration": "product prominently displayed, naturally belonging in scene",
+    "quality": "cinematic lifestyle photography,"
+  },
+  "defaults": {
+    "setting": "luxury interior or lifestyle environment matching product",
+    "atmosphere": "warm, inviting, aspirational",
+    "integration": "product as natural focal point"
+  },
+  "variants": {
+    "interior-luxury": {
+      "description": "奢华室内场景",
+      "overrides": {
+        "setting": "high-end spa/hotel/luxury home, marble, gold fixtures",
+        "atmosphere": "cinematic depth, warm grading, premium"
+      }
+    },
+    "outdoor-natural": {
+      "description": "户外自然场景",
+      "overrides": {
+        "setting": "natural outdoor, organic elements",
+        "atmosphere": "golden hour sunlight, natural and free"
+      }
+    },
+    "studio-editorial": {
+      "description": "棚拍编辑风格",
+      "overrides": {
+        "setting": "professional studio with styled backdrop",
+        "atmosphere": "controlled studio lighting, editorial quality"
+      }
+    }
+  },
+  "category_tips": {
+    "beauty": "spa bathroom, vanity mirror, botanical elements, skincare ritual",
+    "fashion": "model wearing item in appropriate setting, natural styling",
+    "furniture": "product in complete room setting, complementary decor",
+    "electronics": "modern desk setup, in-use context, tech-forward"
+  },
+  "examples": [
+    "Cinematic luxury {category} integration. High-end {interior} with {materials}. {product} prominently displayed. Morning sunlight through frosted glass, ethereal light rays. Fresh flowers, botanical elements. Product label visible, ingredient card beside it. Decorative: tray, pearls, gold foil. Color: {colors}. Cinematic depth, warm grading, premium, 1080x1620px",
+    "{product} naturally in {scene}, morning sunlight, soft shadows, botanical touches, warm atmosphere, professional lifestyle photography, 1080x1350px",
+    "{product} integrated into complete {category} lifestyle scene. {person} at {location}, products arranged naturally, natural light, warm atmosphere. Professional lifestyle, 1080x1350px"
+  ],
+  "anti_ai_tips": "",
+  "supports_image_reference": true,
+  "platform_constraints": {
+    "amazon": {
+      "background": "scene-dependent (not pure white)",
+      "foreground_ratio": "n/a (not main image)",
+      "no_text_logo": true,
+      "aspect": "1:1 or 4:3",
+      "min_size": "1000px",
+      "note": "虚拟试穿/产品融入场景图,非纯白底,不适用 Amazon 主图。适用附图 / AR 试穿素材。"
+    }
+  },
+  "ref_roles": [
+    {
+      "index": 1,
+      "role": "product reference for scene integration",
+      "preserve": [
+        "logo",
+        "color",
+        "shape",
+        "texture"
+      ]
+    }
+  ],
+  "campaign_id": ""
+}

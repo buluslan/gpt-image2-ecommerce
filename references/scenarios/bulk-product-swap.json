@@ -1,0 +1,59 @@
+{
+  "id": "bulk-product-swap",
+  "name": "爆款图换品（保版式批量替换产品）",
+  "keywords": [
+    "换品",
+    "爆款换品",
+    "套图换产品",
+    "product swap",
+    "同款不同品",
+    "复制爆款图",
+    "bulk swap"
+  ],
+  "trigger_phrases": [
+    "把这套图换成我的产品",
+    "爆款图换品",
+    "用这个爆款的排版换我的产品",
+    "这套 listing 图帮我换成另一个产品",
+    "swap the product keep the layout"
+  ],
+  "model_hint": "gpt-image-2.5-sunburst",
+  "prompt_template": {
+    "type": "bulk product replacement across a reference image set, preserving everything except the product itself",
+    "subject": "Replace the product in image 1 across images 2-7. Only the swapped product changes; keep everything else identical — composition, layout, background, lighting, text placement, props, camera angle, and style stay exactly as in each target image",
+    "preserve": "the new product's shape, proportions, {color} packaging, logo, and label text come ONLY from image 1; scale it naturally to fit each scene's perspective and contact shadows",
+    "quality": "seamless composite per image, consistent series look, no artifacts at product boundaries"
+  },
+  "defaults": {},
+  "variants": {
+    "single-target": {
+      "description": "单图换品（image 1 产品换进 image 2 场景）",
+      "overrides": {
+        "subject": "Replace the product in image 2 with the product from image 1. Only the product changes; background, lighting, composition, and camera stay exactly as in image 2",
+        "preserve": "product identity from image 1 only: shape, color, logo, label text"
+      }
+    }
+  },
+  "ref_roles": [
+    {
+      "image": 1,
+      "role": "the NEW product — preserve its logo, color, shape, label text exactly",
+      "preserve": [
+        "logo",
+        "color",
+        "shape",
+        "label text"
+      ]
+    },
+    {
+      "image": "2-N",
+      "role": "target scenes whose layout/composition/lighting must survive unchanged",
+      "preserve": [
+        "composition",
+        "background",
+        "lighting",
+        "text placement"
+      ]
+    }
+  ]
+}

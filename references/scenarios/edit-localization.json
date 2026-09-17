@@ -1,0 +1,118 @@
+{
+  "id": "edit-localization",
+  "name": "本地化（同产品不同市场视觉调整）",
+  "keywords": [
+    "本地化",
+    "localization",
+    "多站点",
+    "US/EU/SEA",
+    "市场适配",
+    "区域视觉",
+    "本地化改图"
+  ],
+  "trigger_phrases": [
+    "本地化",
+    "做个 US 版本",
+    "东南亚版本",
+    "localization",
+    "多市场",
+    "区域视觉调整",
+    "本地化改图"
+  ],
+  "prompt_template": {
+    "type": "market localization edit (preserve product, adapt aesthetic/text/model for target region)",
+    "subject": "{product_description}, identical product as reference",
+    "region": "{target_region}",
+    "adaptation": "{region_aesthetic_adjustments}",
+    "text_overlay": "{localized_copy}",
+    "quality": "culturally authentic localization,"
+  },
+  "defaults": {
+    "region": "US",
+    "adaptation": "minimal clean western aesthetic, English copy, neutral model diversity"
+  },
+  "variants": {
+    "us": {
+      "description": "美国市场（简洁干净/英文/多元模特）",
+      "overrides": {
+        "adaptation": "clean bright western aesthetic, diverse ethnicity models, English copy, confident lifestyle tone",
+        "text_overlay": "English benefit-driven headline"
+      }
+    },
+    "eu": {
+      "description": "欧洲市场（自然克制/多语/可持续感）",
+      "overrides": {
+        "adaptation": "natural muted earthy palette, minimalist editorial, multi-language text option, eco-conscious cues",
+        "text_overlay": "French/German minimal copy"
+      }
+    },
+    "sea": {
+      "description": "东南亚市场（鲜艳活泼/促销感/热带）",
+      "overrides": {
+        "adaptation": "vibrant saturated colors, promotional energy, tropical context, Shopee/Lazada banner style",
+        "text_overlay": "bold promo copy with local language"
+      }
+    },
+    "jp": {
+      "description": "日本市场（精致细节/匠人感/留白）",
+      "overrides": {
+        "adaptation": "refined detail-oriented layout, artisan craftsmanship cues, soft pastel, generous whitespace",
+        "text_overlay": "Japanese refined minimal copy"
+      }
+    },
+    "me": {
+      "description": "中东市场（奢华金调/几何纹/家族感）",
+      "overrides": {
+        "adaptation": "luxurious gold and deep tone palette, geometric patterns, family/hospitality theme",
+        "text_overlay": "Arabic elegant typography"
+      }
+    }
+  },
+  "category_tips": {
+    "beauty": "US=多元肤色功效对比；EU=成分透明天然；SEA=美白防晒强卖点；JP=精致细节成分；ME=奢华香氛",
+    "food": "US=大份量家庭；EU=产地溯源慢食；SEA=本地口味辣鲜；JP=精致小份匠人；ME=清真认证家族分享",
+    "fashion": "US=多元身材自信；EU=极简中性；SEA=鲜艳潮流；JP=精致剪裁；ME=保守优雅长款",
+    "electronics": "US=科技参数；EU=环保节能；SEA=性价比高亮；JP=精致工艺细节",
+    "home": "US=宽敞现代；EU=自然原木；SEA=色彩活泼；JP=禅意留白",
+    "jewelry": "US=个性宣言款；EU=经典低调；SEA=隆重宴会金；JP=精致日常；ME=奢华几何金",
+    "sports": "US=力量竞技；EU=户外自然；SEA=潮流运动；JP=精致功能"
+  },
+  "examples": [
+    "Input: 护肤精华白底图（中文）。Output US 版：同一只精华（瓶身/logo/料体不变），背景换成现代浴室台面 + 多元肤色模特手持 + 英文功效标题 'Radiant Glow Serum'，简洁明亮西方审美，1080x1350px",
+    "Input: 零食包装白底图。Output SEA 版：同一包装（产品本体不变），场景换成鲜艳热带背景 + Shopee 风促销角标 + 印尼语 'PEDAS ENAK' + 高饱和暖色，促销活力感，1080x1080px",
+    "Input: 香水瓶白底图。Output ME 版：同一香水瓶（瓶身/液体/logo 不变），场景换成深色调奢华背景 + 金色几何伊斯兰纹样 + 阿拉伯文优雅排版 + 家族分享主题，金调奢华，1080x1350px"
+  ],
+  "anti_ai_tips": "常见翻车：本地化文字渲染错（假字/错字/排版别扭）、文化元素刻板堆砌、产品被错误本地化改造。修复：text 用 ALL CAPS+逐字母回退，文化元素点到为止，product appearance 永远 preserve。",
+  "supports_image_reference": true,
+  "platform_constraints": {
+    "amazon": {
+      "regional_listing_rule": "不同站点语言文字需匹配目标站点；模特避免刻板种族刻板印象",
+      "note": "US 主图仍须纯白底；本地化氛围图作为副图"
+    },
+    "shopee_sea": {
+      "note": "SEA 站点允许更活泼促销视觉，角标和促销文字为常态"
+    }
+  },
+  "text_assets": {
+    "localized_copy": "目标语言的简短卖点文案（建议≤6 词）",
+    "promo_badge": "促销角标文字（如 50% OFF / NEW）",
+    "note": "渲染非英文文字时务必用 ALL CAPS 逐字母回退，避免 GPT-Image-2 生成假字"
+  },
+  "ref_roles": [
+    {
+      "index": 0,
+      "role": "product master — localize the scene/aesthetic around this product",
+      "preserve": [
+        "product shape",
+        "product color",
+        "brand logo",
+        "brand identity",
+        "label layout",
+        "core proportions"
+      ],
+      "instruction": "The product itself MUST remain identical to the reference (same shape, same color, same logo, same label). Only the surrounding scene, aesthetic tone, model ethnicity, text language, and cultural props adapt to the target region."
+    }
+  ],
+  "campaign_id": "",
+  "model_hint": "gpt-image-2.5-sunburst"
+}

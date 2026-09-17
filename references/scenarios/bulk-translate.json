@@ -1,0 +1,37 @@
+{
+  "id": "bulk-translate",
+  "name": "保版式批量翻译（多市场图集一键换语言）",
+  "keywords": [
+    "图翻译",
+    "翻译图",
+    "换语言",
+    "多市场",
+    "本地化图",
+    "translate images",
+    "listing 翻译"
+  ],
+  "trigger_phrases": [
+    "把这套图翻译成日语",
+    "图上的文字换成德语",
+    "多市场版本图片",
+    "一键翻译整套 listing 图",
+    "translate the text in all images"
+  ],
+  "model_hint": "gpt-image-2.5-sunburst",
+  "prompt_template": {
+    "type": "layout-preserving text translation across an image set",
+    "subject": "Translate the text in all images into {target_language}. Preserve the layout exactly: same font size relationships, same positions, same colors, same line breaks; only the language of the text changes",
+    "integration": "translated text must fit naturally in the original text areas — adjust tracking/leading minimally if needed, never reflow or resize design elements",
+    "quality": "accurate natural {target_language} copy appropriate for e-commerce, correct diacritics and punctuation, no leftover source-language fragments"
+  },
+  "defaults": {},
+  "variants": {
+    "market-pack": {
+      "description": "一次多语言（同套图出 N 个语言版本）",
+      "overrides": {
+        "subject": "Generate a {target_language} version of each image, translating all visible text. Preserve layout exactly: positions, sizes, colors, line breaks unchanged; only the language changes. Produce one version per image."
+      }
+    }
+  },
+  "platform_constraints": "translated claims must stay legally compliant in the target market (see platform-constraints.md Layer 2 for market-specific claim rules)"
+}

@@ -1,0 +1,174 @@
+{
+  "skill_name": "ecom-image2",
+  "schema_version": "1.0",
+  "notes": "expectations 采用字符串数组（符合 skill-creator evals.json schema）。每条陈述末尾用【auto】或【human】标签标注判定方式：【auto】= 可由 grader 脚本/compliance_check.py/OCR/文件检测自动判定；【human】= 主观美学质量，需人工在 eval-viewer 中评估。trigger 触发率评估见同级 trigger-evals.json。",
+  "expectation_tag_legend": {
+    "auto": "可程序化判定：文件存在性、尺寸、模板命中、imagegen.sh 调用、背景 RGB、OCR 文字、品类识别等",
+    "human": "需人工判定：构图美感、风格一致性、反 AI 感、排版质感、色彩准确度等主观维度"
+  },
+  "evals": [
+    {
+      "id": 1,
+      "name": "amazon-main-image-compliance",
+      "prompt": "帮我给这款护腰带做一张亚马逊主图，产品图我传你了（waist-belt.jpg）。要纯白底、专业医疗感，符合亚马逊主图规范——产品占满、无文字无 Logo。",
+      "expected_output": "一张 1024x1024 的亚马逊合规主图：纯白背景（四角 RGB≈255,255,255）、产品前景占比≥85%、无任何文字/水印/Logo、产品呈现专业医疗质感。",
+      "files": [
+        "evals/files/waist-belt.jpg"
+      ],
+      "expectations": [
+        "调用了 scripts/imagegen.sh 执行生图（而非裸 codex exec 直接跑）【auto】",
+        "路由命中 scenarios/hero-image.json 模板（transcript 中可见读取该模板）【auto】",
+        "输出了 PNG 图片文件且尺寸为 1024x1024【auto】",
+        "背景四角 RGB 接近 255,255,255（compliance_check.py 白度校验通过，容差≤8）【auto】",
+        "产品前景像素占比≥85%（compliance_check.py 占比校验通过）【auto】",
+        "图中无任何文字/水印/Logo（OCR 扫描零文字块）【auto】",
+        "产品呈现专业医疗感，主体清晰锐利、材质质感到位【human】"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "campaign-set-consistency",
+      "prompt": "用这张蛋白粉罐的产品图（protein-powder.jpg）做一套 5 张风格一致的亚马逊 Listing 套图：主图+场景图+卖点信息图+对比图+包装图。要像同一个品牌出的，色系字体光线统一，别做着做着风格漂了。",
+      "expected_output": "5 张风格统一的套图，共享同一套 Campaign Style Lock（固定色板/字体系统/光线/背景系统/禁止漂移项），每张图只在画面目的+主体动作+构图上变化。",
+      "files": [
+        "evals/files/protein-powder.jpg"
+      ],
+      "expectations": [
+        "共生成了 5 张图片文件【auto】",
+        "建立了 Campaign Style Lock 锁定文本（含色板/字体/光线/禁止漂移项，transcript 中可见 10 字段锁定文本）【auto】",
+        "5 张图引用同一个 campaign 锚点（同一锁定文本 prepend 到每张 prompt 开头）【auto】",
+        "每张图单独调用了 imagegen.sh（共 5 次生图调用）【auto】",
+        "5 张图尺寸一致（均为 1024x1024 或同一指定尺寸）【auto】",
+        "5 张图风格一致：色板/光线/排版感统一（CLIP 空间距离小或人评一致）【human】",
+        "5 张图功能各异：主图白底/场景化/卖点标注/前后对比/包装展示，无重复【human】"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "infographic-text-accuracy",
+      "prompt": "给这款蓝牙耳机（earbuds.jpg）做一张 A+/卖点信息图，图上要写这三行卖点：'Active Noise Cancelling'、'40H Battery'、'Bluetooth 5.3'，配色干净专业点，别错字。",
+      "expected_output": "一张卖点信息图，三处英文卖点文案渲染准确、无错字残字、无多余文字，排版层级分明。",
+      "files": [
+        "evals/files/earbuds.jpg"
+      ],
+      "expectations": [
+        "路由命中 scenarios/infographic.json 模板【auto】",
+        "prompt 组装时对文案做了引号包裹 + ALL CAPS 处理（text_assets 字段被使用）【auto】",
+        "OCR 能从输出图中识别出 'Active Noise Cancelling'、'40H Battery'、'Bluetooth 5.3' 三处文案（逐词精确匹配）【auto】",
+        "无明显错字/残字/变形文字（OCR 置信度≥0.85）【auto】",
+        "文字区域无多余无关文字（'no extra words' 约束生效）【auto】",
+        "排版清晰、卖点层级分明、配色专业有商业感【human】"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "variant-consistency",
+      "prompt": "这款保温杯我有 8 个颜色变体（黑/白/红/蓝/绿/黄/粉/银），帮我一次性出 8 张主图，除了杯身颜色不一样，其他（杯型/角度/光线/背景）完全一样，要能拼成同一个变体网格。",
+      "expected_output": "8 张保温杯主图：杯型/拍摄角度/光线/背景完全一致，仅杯身颜色不同（黑/白/红/蓝/绿/黄/粉/银），可拼成统一变体网格。",
+      "files": [
+        "evals/files/tumbler-black.jpg"
+      ],
+      "expectations": [
+        "共生成了 8 张图片（多变体批量）【auto】",
+        "使用了 n=8 批量参数或基于同一锚点的循环调用（transcript 可查）【auto】",
+        "8 张图尺寸完全一致（均为 1024x1024）【auto】",
+        "8 张图主体轮廓一致（杯型/角度/构图相同，可用图像哈希或边缘检测比对主体相似度≥0.9）【auto】",
+        "8 个颜色准确对应请求的 黑/白/红/蓝/绿/黄/粉/银，无串色无遗漏【human】",
+        "8 张图可无缝拼成统一变体网格（风格/光线/背景完全统一）【human】"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "ugc-anti-ai",
+      "prompt": "给这款面膜（sheet-mask.jpg）做一张 UGC 买家秀图，要像真人用手机自拍的，不要那种 AI 味很重的精修图。背景带点生活感，比如卫生间洗手台那种，真实一点。",
+      "expected_output": "一张反 AI 感的 UGC 买家秀：手机/CCD 自拍质感、自然光、可见皮肤纹理与毛孔、略带不完美的构图、真实生活环境（非棚拍）。",
+      "files": [
+        "evals/files/sheet-mask.jpg"
+      ],
+      "expectations": [
+        "路由命中 scenarios/ugc-style.json 模板【auto】",
+        "prompt 中包含反 AI 感正向指令（指定机型如 iPhone 14/15 Pro、胶片色调如 Kodak Portra 400、imperfect/visible pores/NOT retouched 之类，transcript 可查）【auto】",
+        "prompt 中未出现 AI slop 词（perfect/flawless/stunning/hyper-realistic/8K/commercial photography 等被过滤）【auto】",
+        "prompt 中包含真实环境描述（卫生间/洗手台/生活杂物/略微凌乱之类）【auto】",
+        "出图确实不像 AI 生成：可见皮肤纹理/毛孔/略微过曝或色偏/真实环境杂物【human】",
+        "整体自然、非棚拍精修感，像真实买家随手拍【human】"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "style-blacklist-trigger",
+      "prompt": "给这款机械键盘（mechanical-keyboard.jpg）做张图吧，我想要那种湖边户外生活方式的感觉，带点干花装饰和手写字体，氛围感拉满那种。",
+      "expected_output": "skill 识别出该产品属于 Electronics/Tech 品类，命中风格黑名单，拒绝或纠正用户请求的 outdoor lifestyle / floral / handwritten 风格，改用推荐替代（硬核科技/工业设计/极简数据风），并向用户说明原因。",
+      "files": [
+        "evals/files/mechanical-keyboard.jpg"
+      ],
+      "expectations": [
+        "识别出产品属于 Electronics/Tech 品类（transcript 中有品类判定步骤）【auto】",
+        "命中 references/style-blacklist.md 的科技品类黑名单（读取了黑名单文件）【auto】",
+        "最终 prompt 中未出现黑名单风格关键词（outdoor lifestyle/luxury atmospherics/floral/dried flowers/handwritten script 等被剔除或替换）【auto】",
+        "改用了推荐替代风格之一（tech blueprint / industrial design / minimal data / 未来科技感）【auto】",
+        "背景亮度符合 ≥#2A2A2A 约束（深灰域，未用纯黑也未用纯白户外场景）【auto】",
+        "向用户说明了风格冲突原因（给出了为何不能用户外/花卉风格的解释）【auto】",
+        "最终出图调性专业、符合科技硬件产品气质【human】"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "lifestyle-scene-natural",
+      "prompt": "给这款香薰机（aroma-diffuser.jpg）做张场景图，放在卧室床头柜上，晚上开着暖灯的氛围，要有生活气息，像真实家居场景不要棚拍感。",
+      "expected_output": "一张生活方式场景图：香薰机置于卧室床头柜场景中，暖色灯光氛围，有真实生活气息（非棚拍），产品主体与参考图外形/材质一致。",
+      "files": [
+        "evals/files/aroma-diffuser.jpg"
+      ],
+      "expectations": [
+        "路由命中 scenarios/lifestyle-scene.json 模板【auto】",
+        "调用了 imagegen.sh 且传入了参考图（--image 参数携带产品图）【auto】",
+        "输出图片尺寸正确（1024x1024 或指定尺寸）【auto】",
+        "产品主体与参考图一致（外形/颜色/材质保真，可用参考图比对）【auto】",
+        "场景自然、暖灯氛围感强、有真实生活气息（非棚拍纯色底）【human】",
+        "产品在场景中融入自然，比例/透视合理【human】"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "packaging-premium-quality",
+      "prompt": "给这款精品咖啡豆（coffee-beans.jpg）做张包装展示图，要把包装袋和散落的咖啡豆一起展示，要有质感，像精品品牌出的那种视觉。",
+      "expected_output": "一张包装展示图：咖啡豆包装袋 + 散落咖啡豆组合展示，材质质感呈现到位，整体精品品牌调性。",
+      "files": [
+        "evals/files/coffee-beans.jpg"
+      ],
+      "expectations": [
+        "路由命中 scenarios/packaging.json 模板【auto】",
+        "调用了 imagegen.sh 执行生图【auto】",
+        "输出图片中同时包含包装与产品（包装袋 + 咖啡豆）【auto】",
+        "包装材质质感呈现到位（哑光/光泽/印刷纹理清晰）【human】",
+        "整体有精品品牌调性（配色克制、构图讲究、非廉价感）【human】"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "给这款蓝牙耳机（earbuds.jpg）做个产品动图，主图那种自动循环的环绕展示动效，背景干净点",
+      "expected_output": "路由到 motion-gif 场景；组装 16 格帧图 4x4 网格 prompt（60度环绕/产品居中/跨帧一致/缓入节奏）；模型选 sunburst；说明切片+GIF 合成后处理流程与 3MB 约束",
+      "files": [
+        "evals/files/earbuds.jpg"
+      ],
+      "name": "motion-gif-routing"
+    },
+    {
+      "id": 10,
+      "prompt": "这是竞品的一套爆款 listing 图（7张）和我的产品图（mine.jpg），把这套图的版式全保留，产品换成我的",
+      "expected_output": "路由到 bulk-product-swap；组装 image 1 产品 + images 2-7 场景的 Replace...Only the swapped product changes prompt + preserve list（版式/光线/文案位置不变，产品 logo/标签只来自 image 1）；模型选 sunburst",
+      "files": [
+        "evals/files/mine.jpg"
+      ],
+      "name": "bulk-product-swap"
+    },
+    {
+      "id": 11,
+      "prompt": "把这套 5 张德语 listing 图全部翻译成日语版本，版式不要动",
+      "expected_output": "路由到 bulk-translate；组装 layout-preserving translation prompt（同字号/同位置/同颜色/只换语言）+ 目标语言自然电商文案约束；模型选 sunburst",
+      "files": [],
+      "name": "bulk-translate"
+    }
+  ]
+}

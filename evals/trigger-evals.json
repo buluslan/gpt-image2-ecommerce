@@ -1,0 +1,102 @@
+[
+  {
+    "query": "帮我给这款护腰带做张亚马逊主图，纯白底那种，产品图在 downloads/waist-belt.jpg",
+    "should_trigger": true,
+    "reason": "明确的电商主图生成诉求，命中 hero-image 场景"
+  },
+  {
+    "query": "我想用这张蛋白粉的产品图做一套 5 张风格一致的 Listing 套图，主图+场景+卖点+对比+包装都要，别风格漂了",
+    "should_trigger": true,
+    "reason": "套图一致性诉求，命中 Campaign Style Lock"
+  },
+  {
+    "query": "给这款蓝牙耳机的 A+ 详情页做张卖点信息图，要标上 'Active Noise Cancelling' 和 '40H Battery'",
+    "should_trigger": true,
+    "reason": "A+/信息图诉求，命中 infographic 场景"
+  },
+  {
+    "query": "这款马克杯有 6 个颜色变体，帮我各出一张白底主图，要能拼成同一个变体网格",
+    "should_trigger": true,
+    "reason": "多变体批量诉求，命中 variant consistency"
+  },
+  {
+    "query": "给这款面膜做张买家秀风格的图，要像真人用手机自拍发小红书那种，别太精修 AI 味重",
+    "should_trigger": true,
+    "reason": "UGC 反 AI 感诉求，命中 ugc-style 场景"
+  },
+  {
+    "query": "这款香薰机做个卧室场景图，放床头柜上开暖灯的氛围，要有生活气息",
+    "should_trigger": true,
+    "reason": "生活方式场景图诉求，命中 lifestyle-scene"
+  },
+  {
+    "query": "这个产品图太丑了，能不能帮我重新做几张能放到详情页上去的，产品图我传你了",
+    "should_trigger": true,
+    "reason": "未点名 GPT-Image-2 但明确需要电商视觉资产生成（pushy description 应触发）"
+  },
+  {
+    "query": "我的 Shopify 店铺 hero banner 需要换张产品图，这款手表的，要有质感",
+    "should_trigger": true,
+    "reason": "跨平台电商视觉资产诉求（Shopify banner）"
+  },
+  {
+    "query": "这款精品咖啡豆做个包装展示图，包装袋配散落的豆子，像精品品牌那种视觉",
+    "should_trigger": true,
+    "reason": "包装展示诉求，命中 packaging 场景"
+  },
+  {
+    "query": "TikTok 小店要几张产品素材图，这款蓝牙音箱的，竖版的那种",
+    "should_trigger": true,
+    "reason": "TikTok 电商素材诉求，跨平台视觉资产"
+  },
+  {
+    "query": "帮我把这张产品图压缩到 100KB 以下，亚马逊上传有大小限制",
+    "should_trigger": false,
+    "reason": "near-miss：共享'产品图/亚马逊'关键词，但实际是图片压缩处理，非生成"
+  },
+  {
+    "query": "帮我把这张产品图的背景抠掉，做成 PNG 透明底方便我后期合成",
+    "should_trigger": false,
+    "reason": "near-miss：共享'背景'关键词，但实际是抠图（纯图像处理），非电商视觉资产生成"
+  },
+  {
+    "query": "帮我写一下这款蓝牙耳机的 Listing title 和五点 bullet points，关键词埋一下",
+    "should_trigger": false,
+    "reason": "near-miss：共享'Listing'关键词，但实际是文案撰写，非图片生成"
+  },
+  {
+    "query": "分析一下这张竞品主图为什么转化高，构图和卖点呈现有什么讲究",
+    "should_trigger": false,
+    "reason": "near-miss：共享'主图/构图'关键词，但实际是竞品分析，非生图"
+  },
+  {
+    "query": "帮我把这个 Excel 里的 Q4 销售数据做成一张柱状图，要清晰点的",
+    "should_trigger": false,
+    "reason": "near-miss：共享'做图'关键词，但实际是数据可视化（dataviz 领域），非电商产品图"
+  },
+  {
+    "query": "帮我把这个 PDF 的产品规格表截成图片，每页一张",
+    "should_trigger": false,
+    "reason": "near-miss：共享'产品/图片'关键词，但实际是 PDF 转图（格式转换），非生成"
+  },
+  {
+    "query": "帮我设计这个 APP 的产品详情页界面，要 Figma 能编辑的源文件",
+    "should_trigger": false,
+    "reason": "near-miss：共享'产品详情页'关键词，但实际是 UI/UX 设计，非电商视觉资产"
+  },
+  {
+    "query": "帮我把这段产品介绍视频剪成 3 个 15 秒短视频发 TikTok",
+    "should_trigger": false,
+    "reason": "near-miss：共享'产品/TikTok'关键词，但实际是视频剪辑，非图片生成"
+  },
+  {
+    "query": "帮我把这张产品包装图上的成分表文字 OCR 提取出来，整理成表格",
+    "should_trigger": false,
+    "reason": "near-miss：共享'产品包装图'关键词，但实际是 OCR 文字提取，非生成"
+  },
+  {
+    "query": "画一个赛博朋克风格的二次元动漫角色，带霓虹光效那种",
+    "should_trigger": false,
+    "reason": "near-miss：是图像生成，但非电商产品领域（动漫角色插画，不在电商场景模板内）"
+  }
+]

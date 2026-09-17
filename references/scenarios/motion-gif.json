@@ -1,0 +1,52 @@
+{
+  "id": "motion-gif",
+  "name": "产品动图（多格帧图合成 GIF/WebP 动效）",
+  "keywords": [
+    "动图",
+    "动效",
+    "GIF",
+    "gif",
+    "motion",
+    "动画",
+    "自动循环",
+    "主图视频",
+    "product motion"
+  ],
+  "trigger_phrases": [
+    "做个动图",
+    "产品动图",
+    "主图动效",
+    "让产品转起来",
+    "循环播放的动图",
+    "GIF 素材",
+    "motion gif",
+    "animated product"
+  ],
+  "model_hint": "gpt-image-2.5-sunburst",
+  "prompt_template": {
+    "type": "16-frame contact sheet for stop-motion style product animation, arranged as a 4x4 grid, frames read left-to-right top-to-bottom",
+    "subject": "{product_description}, identical to reference image across ALL 16 frames: same shape, color, logo, label, lighting",
+    "motion": "camera orbits the product {orbit_direction} by 60 degrees total across the sequence (start 30 degrees left, end 30 degrees right), product stays centered and stationary, background elements slide horizontally to convey rotation",
+    "grid": "equal square cells, consistent margins, consistent lighting from frame 1 to frame 16, no frame borders or numbering",
+    "quality": "consistent product identity across frames, smooth incremental change between adjacent frames, commercial e-commerce quality"
+  },
+  "defaults": {
+    "orbit_direction": "from left to right",
+    "output_note": "generate the 16-frame grid ONCE, then slice cells and composite into GIF/WebP offline (see references/motion-gif.md for the full pipeline: grid -> slice -> loop -> compress)"
+  },
+  "variants": {
+    "loop-orbit": {
+      "description": "环绕展示（电商主图/详情页首图默认）",
+      "overrides": {
+        "motion": "camera orbits 60 degrees left-to-right, motion eases in slow at the start and faster at the end so the reversed playback loops seamlessly"
+      }
+    },
+    "highlight-turn": {
+      "description": "产品自身小幅动作（翻盖/旋转功能件）",
+      "overrides": {
+        "motion": "the product's {moving_part} moves through one full action cycle across the frames, camera fully locked, background static"
+      }
+    }
+  },
+  "platform_constraints": "final deliverable under 3MB for WeChat/detail-page embed; transparent residues must be solid pixels in GIF (no semi-transparency); prefer WebP when transparency is needed"
+}

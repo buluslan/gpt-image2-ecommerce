@@ -1,0 +1,41 @@
+{
+  "id": "transparent-cutout",
+  "name": "透明抠图（PNG/WebP 透明底产品提取）",
+  "keywords": [
+    "抠图",
+    "透明底",
+    "透明背景",
+    "去背景",
+    "cutout",
+    "transparent background",
+    "remove background",
+    "PNG 抠图"
+  ],
+  "trigger_phrases": [
+    "帮我抠图",
+    "透明底 PNG",
+    "去背景",
+    "抠出来",
+    "transparent cutout",
+    "isolate the product"
+  ],
+  "model_hint": "gpt-image-2.5-sunburst",
+  "prompt_template": {
+    "type": "product extraction onto fully transparent background (official GPT-Image-2.5 cutout recipe, verbatim)",
+    "subject": "Extract the product from the input image and isolate it on a fully transparent background",
+    "output": "centered product, crisp silhouette, no halos/fringing",
+    "preserve": "product geometry and label legibility exactly",
+    "constraints": "Add only light polishing. Do not add a solid backdrop, checkerboard, scenery, or shadow. Do not restyle the product; remove the background and preserve clean alpha transparency."
+  },
+  "defaults": {
+    "api_params": "requires background=transparent + output_format=png (or webp); relay endpoints expose this as request parameters — api channel passes them through when supported, manual mode notes them in the pack"
+  },
+  "variants": {
+    "webp-transparent": {
+      "description": "WebP 透明（更小体积，支持真半透明——动图残影场景优先）",
+      "overrides": {
+        "api_params": "background=transparent + output_format=webp"
+      }
+    }
+  }
+}

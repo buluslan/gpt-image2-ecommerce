@@ -1,0 +1,123 @@
+{
+  "id": "gift-set",
+  "name": "节日礼盒场景图（节庆送礼套装）",
+  "keywords": [
+    "礼盒",
+    "节日礼盒",
+    "gift set",
+    "圣诞礼盒",
+    "新年礼盒",
+    "情人节礼盒",
+    "送礼",
+    "gift box",
+    "节日套装"
+  ],
+  "trigger_phrases": [
+    "节日礼盒",
+    "圣诞礼盒",
+    "新年礼盒",
+    "情人节套装",
+    "gift set",
+    "gift box",
+    "送礼套装",
+    "母亲节礼盒"
+  ],
+  "prompt_template": {
+    "type": "festive gift set scene photography",
+    "subject": "{product_description} as a holiday gift set",
+    "occasion": "{festival_or_occasion}",
+    "arrangement": "gift box presentation with ribbon, card, festive props",
+    "mood": "warm celebratory gifting atmosphere",
+    "quality": "editorial gift photography,"
+  },
+  "defaults": {
+    "occasion": "Christmas",
+    "arrangement": "open gift box with products, ribbon, greeting card, festive scatter",
+    "mood": "warm golden celebratory"
+  },
+  "variants": {
+    "christmas": {
+      "description": "圣诞礼盒（红绿/松枝/暖灯）",
+      "overrides": {
+        "occasion": "Christmas",
+        "arrangement": "red and green gift box, pine branches, gold ribbon, fairy lights, snow dusting",
+        "mood": "warm cozy Christmas golden"
+      }
+    },
+    "lunar-new-year": {
+      "description": "农历新年礼盒（红金/灯笼/福字）",
+      "overrides": {
+        "occasion": "Lunar New Year",
+        "arrangement": "red and gold gift box, paper lantern, plum blossom, gold foil, subtle festive character",
+        "mood": "warm red festive gold glow"
+      }
+    },
+    "valentine": {
+      "description": "情人节礼盒（粉红/玫瑰/丝绒）",
+      "overrides": {
+        "occasion": "Valentine's Day",
+        "arrangement": "pink/red gift box, rose petals, velvet ribbon, heart tag, pearls",
+        "mood": "romantic soft pink glow"
+      }
+    },
+    "mother-day": {
+      "description": "母亲节礼盒（粉调/康乃馨/温馨）",
+      "overrides": {
+        "occasion": "Mother's Day",
+        "arrangement": "soft pink gift box, carnations, handwritten card, pearls, lace",
+        "mood": "warm tender maternal"
+      }
+    },
+    "wedding": {
+      "description": "婚礼伴手礼（白金/花卉/优雅）",
+      "overrides": {
+        "occasion": "Wedding favor",
+        "arrangement": "white and gold gift box, fresh florals, satin ribbon, calligraphy tag",
+        "mood": "elegant ivory celebration"
+      }
+    }
+  },
+  "category_tips": {
+    "beauty": "护肤/彩妆礼盒：突出套装完整度+试用感+赠品；圣诞=限量包装，春节=红色礼盒",
+    "food": "巧克力/茶/坚果礼盒：突出品类丰富+节日分享+精美包装",
+    "jewelry": "珠宝礼盒：丝绒内衬+单件呈现+浪漫场景；情人节/婚礼为主",
+    "fashion": "围巾/皮具礼盒：礼盒+品牌卡+丝带；秋冬节日为主",
+    "home": "香薰/茶具礼盒：礼盒+搭配道具+节日氛围；通用节庆",
+    "candles": "蜡烛礼盒：节日 scent+限量外观+礼盒包装",
+    "wine": "酒类礼盒：礼盒+酒具+节日餐桌场景"
+  },
+  "examples": [
+    "护肤品牌圣诞礼盒场景：打开的红绿双色礼盒，内含 3 件护肤套装（洁面+精华+面霜）排列整齐，松枝环绕，金色丝带蝴蝶结，品牌烫金贺卡，散落金色铃铛和暖黄串灯散景，温暖圣诞金调，编辑风礼盒摄影，1080x1350px",
+    "巧克力品牌农历新年礼盒：红色烫金礼盒打开，内含 12 颗装松露巧克力独立排列，背景纸灯笼、梅花枝、金色洒金红包散落，暖红节日光，中国新年喜庆氛围，1080x1350px",
+    "香水情人节礼盒：粉色丝绒礼盒打开露出 50ml 香水瓶+试用装+贺卡，周围散落玫瑰花瓣、珍珠、丝带蝴蝶结，柔光粉调浪漫氛围，编辑风礼盒摄影，1080x1350px"
+  ],
+  "anti_ai_tips": "常见翻车：礼盒结构不合理（透视错）、产品数量在不同视角不一致、节日文字渲染错、礼盒喧宾夺主盖过产品。修复：明确产品数量清单、文字 ALL CAPS 逐字母回退、产品保持焦点。",
+  "supports_image_reference": true,
+  "platform_constraints": {
+    "amazon": {
+      "listing_rule": "节日礼盒图适合做副图（节庆 Listing 或 gift guide）；主图若为礼盒装仍须纯白底",
+      "seasonal_rule": "节日 Listing 季节性强，节后需及时下架或转为常规礼盒图",
+      "note": "礼盒内含 SKU 须与变体设置一致，避免实际发货与图不符"
+    }
+  },
+  "text_assets": {
+    "brand_name": "品牌名",
+    "gift_card_text": "贺卡文字（如 'Merry Christmas' / 'With Love'）",
+    "set_description": "套装内容标签（如 '3-Piece Set'）",
+    "note": "节日文字用引号包裹+ALL CAPS+逐字母回退；中文节日（春节/中秋）需切换中文字体提示"
+  },
+  "ref_roles": [
+    {
+      "index": 0,
+      "role": "product reference — feature this product in the gift set",
+      "preserve": [
+        "product appearance",
+        "brand logo",
+        "label",
+        "product color"
+      ],
+      "instruction": "The products inside the gift box MUST match the reference product appearance and branding. The gift box, ribbon, card, and festive props are composed around them to create the gifting scene."
+    }
+  ],
+  "campaign_id": ""
+}

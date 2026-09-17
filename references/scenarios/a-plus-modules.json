@@ -1,0 +1,120 @@
+{
+  "id": "a-plus-modules",
+  "name": "亚马逊 A+ 模块图（精确尺寸）",
+  "keywords": [
+    "A+",
+    "A+ Content",
+    "亚马逊A+",
+    "模块图",
+    "970x600",
+    "970x300",
+    "300x300",
+    "品牌故事模块",
+    "Enhanced Brand Content"
+  ],
+  "trigger_phrases": [
+    "A+模块",
+    "A+ Content",
+    "亚马逊A+图",
+    "970x600",
+    "品牌故事模块",
+    "EBC",
+    "Enhanced Brand Content"
+  ],
+  "prompt_template": {
+    "type": "Amazon A+ Content module graphic (precise platform dimensions)",
+    "subject": "{product_description}",
+    "module_size": "{a_plus_module_size}",
+    "layout": "modular brand story with header, feature blocks, comparison, lifestyle",
+    "brand_system": "{brand_colors} palette, {brand_font} typography",
+    "quality": "clean professional e-commerce design, mobile-readable,"
+  },
+  "defaults": {
+    "module_size": "970x600 (standard brand story module)",
+    "layout": "left product hero, right 3 feature blocks with icons, bottom brand banner",
+    "brand_system": "brand-consistent palette, sans-serif typography"
+  },
+  "variants": {
+    "brand-story-970x600": {
+      "description": "品牌故事主模块 970x600",
+      "overrides": {
+        "module_size": "970x600 pixels",
+        "layout": "brand logo top-left, hero lifestyle image, brand promise headline, 2-3 value pillars with icons"
+      }
+    },
+    "feature-grid-970x300": {
+      "description": "标准功能模块 970x300",
+      "overrides": {
+        "module_size": "970x300 pixels",
+        "layout": "horizontal banner, product left, 3-4 feature callouts with icons right"
+      }
+    },
+    "comparison-970x300": {
+      "description": "对比模块 970x300",
+      "overrides": {
+        "module_size": "970x300 pixels",
+        "layout": "comparison table: our brand vs generic, checkmark/cross style"
+      }
+    },
+    "quad-300x300": {
+      "description": "四宫格小模块 300x300（每个）",
+      "overrides": {
+        "module_size": "300x300 pixels each, 4 modules",
+        "layout": "2x2 grid, each cell one feature with icon + short label"
+      }
+    },
+    "lifestyle-banner-970x600": {
+      "description": "生活方式横幅 970x600",
+      "overrides": {
+        "module_size": "970x600 pixels",
+        "layout": "full-bleed lifestyle scene, product integrated, short overlay copy bottom"
+      }
+    }
+  },
+  "category_tips": {
+    "beauty": "成分透视图 + 功效数据 + 皮肤科医生背书徽章；高质感瓶身特写",
+    "electronics": "规格参数表 + 性能对比 + 兼容性图标矩阵；科技深色系",
+    "food": "产地溯源 + 营养可视化 + 食谱应用；温暖食物色",
+    "fashion": "材质放大 + 工艺细节 + 穿搭场景；编辑风排版",
+    "home": "使用前后 + 空间适配 + 工艺材质；居家暖调",
+    "jewelry": "切工放大 + 材质证书 + 佩戴场景；奢华金调",
+    "sports": "科技参数 + 运动场景 + 材质剖面；动感活力色"
+  },
+  "examples": [
+    "亚马逊 A+ 品牌故事模块 970x600px：左 1/3 产品 hero 图（蓝牙耳机悬浮）；右 2/3 顶部品牌 Logo + 标题 'Sound Without Limits'，下方 3 个功能方块配图标（①主动降噪 ②36 小时续航 ③IPX5 防水）；深蓝品牌色 + 白字，sans-serif，移动端可读，",
+    "亚马逊 A+ 功能模块 970x300px：横向布局，左侧产品场景图（护肤精华 + 滴管），右侧 4 个卖点横排（玻尿酸+角鲨烷+烟酰胺+维C），每项配简约线性图标和百分比数据，莫兰迪绿+米白，",
+    "亚马逊 A+ 四宫格 300x300px ×4：①成分透视图 ②使用手法 ③28天数据对比 ④皮肤科医生推荐徽章，每格统一品牌色边框和图标系统，可独立或拼接，"
+  ],
+  "anti_ai_tips": "常见翻车：文字渲染错（假字/串行）、模块尺寸不对被亚马逊拒、移动端字太小不可读。修复：文字用 ALL CAPS+逐字母回退+引号包裹；尺寸严格 970x600/970x300/300x300；正文字号视觉上≥24px 等效。",
+  "supports_image_reference": true,
+  "platform_constraints": {
+    "amazon": {
+      "module_sizes": "官方支持尺寸：970x600 / 970x300 / 300x300 / 970x1500 等精确像素",
+      "image_rule": "A+ 模块图可含文字（不同于主图），但不得含竞品名/促销价/号召点击外链",
+      "text_rule": "文字须为品牌语言，避免 'click here' / 比竞品定价",
+      "note": "尺寸必须 16 的倍数且严格匹配官方模块槽位，imagegen.sh 尺寸校验会拦截不合规"
+    }
+  },
+  "text_assets": {
+    "brand_name": "品牌名（用于 Logo 区）",
+    "headline": "模块主标题（建议≤8 词）",
+    "feature_labels": "功能标签数组（每个≤4 词）",
+    "data_points": "数据点（如 36h / 99% / 28天）",
+    "note": "所有文字用引号包裹 + ALL CAPS + 逐字母回退；中文 A+ 需切换日中字体提示"
+  },
+  "ref_roles": [
+    {
+      "index": 0,
+      "role": "product reference — feature this product in the module hero",
+      "preserve": [
+        "product appearance",
+        "brand logo",
+        "label",
+        "color"
+      ],
+      "instruction": "Product in the A+ module hero MUST match the reference product appearance and branding. Surrounding design elements (icons, typography, layout) are newly composed."
+    }
+  ],
+  "campaign_id": "",
+  "model_hint": "gpt-image-2.5-sunburst"
+}
