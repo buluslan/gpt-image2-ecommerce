@@ -1,0 +1,2 @@
+Pillow>=10,<12
+pytesseract>=0.3.10,<1

@@ -17,6 +17,8 @@
 | `mechanical-keyboard.jpg` | eval #6 style-blacklist-trigger | 机械键盘产品照（3C 品类，验证风格黑名单） |
 | `aroma-diffuser.jpg` | eval #7 lifestyle-scene-natural | 香薰机产品照（验证生活方式场景） |
 | `coffee-beans.jpg` | eval #8 packaging-premium-quality | 咖啡豆/包装产品照（验证包装质感） |
+| `mine.jpg` | eval #10 bulk-product-swap | 待替换进去的自有产品图 |
+| `competitor-1.jpg` … `competitor-7.jpg` | eval #10 bulk-product-swap | 一套有合法使用权的版式参考图 |
 
 ## 补图指南
 

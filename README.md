@@ -13,10 +13,10 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-SKILL-blueviolet.svg)](https://docs.anthropic.com/en/docs/claude-code)
 [![Bash](https://img.shields.io/badge/bash-3.2%2B-green.svg)]()
-[![Version](https://img.shields.io/badge/version-0.3.0-black.svg)]()
-[![GPT-Image-2.5](https://img.shields.io/badge/GPT--Image-2.5-Flare%20%2F%20Sunburst-0d9488.svg)]()
+[![Version](https://img.shields.io/badge/version-0.3.1-black.svg)]()
+[![Image API](https://img.shields.io/badge/Image%20API-provider--configured-0d9488.svg)]()
 
-**39个电商场景模板 · 2.5双模型路由 · Campaign套图一致性 · 平台合规层 · Edit矩阵 · 产品动图 · 反AI感双层过滤**
+**39个电商场景模板 · Provider模型路由 · Campaign套图一致性 · 平台技术预检 · Edit矩阵 · 产品动图 · 反AI感双层过滤**
 
 **Created By Buluu@新西楼.AI**
 
@@ -26,7 +26,7 @@
 
 ## 项目简介
 
-E-Commerce Image Generator 是由 buluslan（公众号：新西楼.AI）研发的电商做图 Skill，他会把你一句话的做图需求，编排成专业级提示词直接出图——39 个电商场景自动匹配、GPT-Image-2.5 双模型自动选型（Flare 快出草稿 / Sunburst 保标签精修）、平台合规顺手检查掉，从白底主图、场景图、A+、卖点信息图到多变体 SKU、产品动图、爆款换品、整套图小语种翻译，一套 Listing 的图一个 Skill 包圆。设计师要等一周的活，他几分钟出一整套。
+你输入产品素材、目标平台和做图需求，E-Commerce Image Generator 会匹配 39 个场景模板，组装可复用的生成或编辑提示词，再按你配置的端点与模型输出图片；随后用脚本检查白底、前景占比与 OCR 状态，并给出需要人工确认的平台风险，最后交付图片、提示词包和检查结果。
 
 > [!TIP]
 > **更多跨境电商 AI 实战内容，请关注公众号「新西楼.AI」**
@@ -46,28 +46,28 @@ E-Commerce Image Generator 是由 buluslan（公众号：新西楼.AI）研发�
 | 产品展示 | 白底主图 hero / 生活场景 lifestyle / 平铺 flat-lay / 细节微距 / 多角度网格 / 隐形模特 / 创意概念 / 奢华氛围 |
 | 营销内容 | 海报 banner / 社交媒体 / UGC 买家秀 / 模特展示 / 直播间 / 季节营销 / 运动广告 / 杂志编辑风 / 礼盒节日 |
 | 信息与规格 | A+ 模块（970x600）/ 卖点信息图 / 尺寸规格图 / 对比图（vs 竞品）/ 品牌故事 / 包装展示 / 开箱流程 |
-| **Edit 矩阵** | 换背景 / 换色（SKU 变体）/ 换季 / 本地化 / 蒙版局部改——保产品像素级不变，只改你要改的 |
+| **Edit 矩阵** | 换背景 / 换色（SKU 变体）/ 换季 / 本地化 / 蒙版局部改——明确保留项，尽量减少无关变化 |
 | **动图与批量** | 产品动图 motion-gif（16 格帧图→GIF/WebP）/ 爆款换品 bulk-product-swap / 保版式批量翻译 bulk-translate / 透明抠图 transparent-cutout |
 
 （完整触发词路由表见 SKILL.md Step 2）
 
-### 2.5 双模型路由
+### Provider 模型路由
 
-GPT-Image-2.5 双模型自动选型：**Flare**（快出草稿，延迟比 2.0 低 50%）vs **Sunburst**（保标签/logo 精修，画质超 2.0）——三问定夺 + 成本心智 + xhigh/max 新质量档，详见 `references/model-routing.md`。
+如果你的服务商提供 **Flare / Sunburst** 这类模型别名，Skill 会按“探索草稿 / 保真定稿”给出路由建议；它们不是所有 OpenAI 兼容端点都具备的标准模型名。最终可用模型、质量档和价格以你所用端点的文档与实时账单为准，详见 `references/model-routing.md`。
 
-### 平台合规层
+### 平台技术预检
 
-**隐形合规**——卖家零视觉负担，skill 帮你合规不冒头：
+它提供的是技术预检与风险提示，不是平台审核或法律结论：
 
 - **平台硬约束**：Amazon / TikTok Shop / Shopify / 速卖通 + Temu 的主图技术规范（A 类主图 RGB(255,255,255) 纯白底 / 占比 ≥85% / 无文字 Logo / 1:1 / ≥1000px）
 - **AIGC 法规追踪**：纽约 SB 8420-A / FTC / 加州 SB 942 + EU AI Act Art 50，含罚款金额 + 卖家硬要求
-- **`compliance_check.py` 自动检测**：背景白度 / 前景占比 / OCR 文字（OCR 可降级）
+- **`compliance_check.py` 自动检测**：背景白度 / 前景占比 / OCR 文字；OCR 缺失会明确标为 skipped，不能视为通过
 - **图类型 4 分类**：A 实拍无人 / B 常规修图 / C 写实 AI 人物（必勾披露）/ D 复刻真人（主动拦截）
 - **三不红线**：不剥离 C2PA / SynthID、不教唆规避 AI 标注、不造假实拍
 
 ### Campaign Style Lock 套图一致性
 
-**模板只是起点，一致性才是成品感**——10 字段 Lock + 6 层漏斗编排，保证整套 listing 从主图到包装 100% 同一品牌视觉：
+**模板只是起点，一致性才是成品感**——10 字段 Lock + 6 层漏斗编排，用来降低整套 listing 从主图到包装的视觉漂移：
 
 - **10 字段锁定协议** + prepend 机制：一套图从主图到包装视觉不漂移
 - **6 层漏斗 9 槽位套图编排**：精细模式（逐槽位编排）与快速通道（单 prompt 整套）双路线
@@ -100,10 +100,13 @@ export IMAGE_MODEL="gpt-image-2.5-flare"          # 精修编辑用 gpt-image-2.
 ### 安装
 
 ```bash
-git clone https://github.com/buluslan/gpt-image2-ecommerce.git
+git clone https://github.com/buluslan/gpt-image2-ecommerce.git ~/.claude/skills/ecom-image2
+cd ~/.claude/skills/ecom-image2
 ```
 
-通用依赖：bash 3.2+ / jq / curl（Mac/Linux）。可选：Python 3.9+ + Pillow + tesseract（合规自检用，缺则自动降级）。
+通用依赖：bash 3.2+、jq、curl、base64、awk（Mac/Linux）。技术预检另需 Python 3.9+ 与 Pillow；OCR 还需 pytesseract 和 tesseract，缺失时会明确降级。
+
+> API 模式会把产品图和参考图上传到你配置的端点。请只使用你有权上传的素材，并先确认端点的数据保留与隐私条款。
 
 ### 用法一：在 Agent 中（推荐）
 
@@ -116,7 +119,7 @@ git clone https://github.com/buluslan/gpt-image2-ecommerce.git
 把这套爆款图换成我的产品，版式全保留
 ```
 
-Agent 会自动匹配模板、组装 prompt、按场景选模型（Flare/Sunburst）、经你配置的通道生成图片、做合规自检。
+Agent 会自动匹配模板、组装 prompt、按端点能力建议模型、经你配置的通道生成图片，并做技术预检。
 
 ### 用法二：直接命令行
 
@@ -129,7 +132,7 @@ bash scripts/imagegen.sh \
 # manual 模式导出 prompt 包（零通道）
 bash scripts/imagegen.sh --prompt-file prompt.json --mode manual --output ./my-prompt-pack
 
-# 合规自检（出图后）
+# 技术预检（出图后）
 python3 scripts/compliance_check.py generated.png --platform amazon --strict | jq .
 ```
 
@@ -170,7 +173,7 @@ gpt-image2-ecommerce/
 ├── README.md / CHANGELOG.md / LICENSE
 ├── scripts/
 │   ├── imagegen.sh                 # 通道无关生成入口（api/manual/cli + 工程硬化）
-│   └── compliance_check.py         # 像素级合规自检
+│   └── compliance_check.py         # 主图技术预检
 ├── references/
 │   ├── scenarios/                  # 39 个场景模板（JSON）
 │   ├── model-routing.md            # 2.5 双模型选型与成本心智

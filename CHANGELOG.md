@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1
+
+- 将 Flare / Sunburst 明确为 provider 模型别名，移除未经复现的性能与价格承诺
+- 将“平台合规”收紧为技术预检与动态风险复核，明确 C2PA/OCR 的检测边界
+- 标明视觉 eval 输入资产仍为占位，并补齐离线 smoke test 与 GitHub Actions
+
 ## 0.3.0
 
 **GPT-Image-2.5 upgrade + channel decoupling** — the skill focuses on prompt orchestration; the image endpoint is entirely your choice.

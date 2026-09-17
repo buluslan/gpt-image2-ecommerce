@@ -1,7 +1,7 @@
 {
   "skill_name": "ecom-image2",
   "schema_version": "1.0",
-  "notes": "expectations 采用字符串数组（符合 skill-creator evals.json schema）。每条陈述末尾用【auto】或【human】标签标注判定方式：【auto】= 可由 grader 脚本/compliance_check.py/OCR/文件检测自动判定；【human】= 主观美学质量，需人工在 eval-viewer 中评估。trigger 触发率评估见同级 trigger-evals.json。",
+  "notes": "这是评测用例定义，不是可直接运行的视觉 benchmark。evals/files 当前只有占位说明；补齐有使用权的输入图和评测 runner 后才能执行端到端生图评测。trigger 触发率评估见同级 trigger-evals.json。expectations 末尾【auto】表示可程序化判定，【human】表示需人工评估。",
   "expectation_tag_legend": {
     "auto": "可程序化判定：文件存在性、尺寸、模板命中、imagegen.sh 调用、背景 RGB、OCR 文字、品类识别等",
     "human": "需人工判定：构图美感、风格一致性、反 AI 感、排版质感、色彩准确度等主观维度"
@@ -11,7 +11,7 @@
       "id": 1,
       "name": "amazon-main-image-compliance",
       "prompt": "帮我给这款护腰带做一张亚马逊主图，产品图我传你了（waist-belt.jpg）。要纯白底、专业医疗感，符合亚马逊主图规范——产品占满、无文字无 Logo。",
-      "expected_output": "一张 1024x1024 的亚马逊合规主图：纯白背景（四角 RGB≈255,255,255）、产品前景占比≥85%、无任何文字/水印/Logo、产品呈现专业医疗质感。",
+      "expected_output": "一张 1024x1024 的亚马逊主图候选：纯白背景（四角 RGB≈255,255,255）、严格模式产品前景占比≥90%、无任何文字/水印/Logo、产品呈现专业医疗质感。",
       "files": [
         "evals/files/waist-belt.jpg"
       ],
@@ -20,7 +20,7 @@
         "路由命中 scenarios/hero-image.json 模板（transcript 中可见读取该模板）【auto】",
         "输出了 PNG 图片文件且尺寸为 1024x1024【auto】",
         "背景四角 RGB 接近 255,255,255（compliance_check.py 白度校验通过，容差≤8）【auto】",
-        "产品前景像素占比≥85%（compliance_check.py 占比校验通过）【auto】",
+        "产品前景像素占比≥90%（compliance_check.py --strict 校验通过）【auto】",
         "图中无任何文字/水印/Logo（OCR 扫描零文字块）【auto】",
         "产品呈现专业医疗感，主体清晰锐利、材质质感到位【human】"
       ]
@@ -159,7 +159,14 @@
       "prompt": "这是竞品的一套爆款 listing 图（7张）和我的产品图（mine.jpg），把这套图的版式全保留，产品换成我的",
       "expected_output": "路由到 bulk-product-swap；组装 image 1 产品 + images 2-7 场景的 Replace...Only the swapped product changes prompt + preserve list（版式/光线/文案位置不变，产品 logo/标签只来自 image 1）；模型选 sunburst",
       "files": [
-        "evals/files/mine.jpg"
+        "evals/files/mine.jpg",
+        "evals/files/competitor-1.jpg",
+        "evals/files/competitor-2.jpg",
+        "evals/files/competitor-3.jpg",
+        "evals/files/competitor-4.jpg",
+        "evals/files/competitor-5.jpg",
+        "evals/files/competitor-6.jpg",
+        "evals/files/competitor-7.jpg"
       ],
       "name": "bulk-product-swap"
     },
