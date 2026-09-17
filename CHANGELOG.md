@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.3
+
+- 恢复项目简介首行的 buluslan / 新西楼.AI 研发者署名，并与发布规范对齐
+
 ## 0.3.2
 
 - 更正 0.3.1 的模型归属描述：Flare 与 Sunburst 是 OpenAI 官方 GPT-Image-2.5 模型，不是服务商别名

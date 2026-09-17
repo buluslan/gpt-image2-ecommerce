@@ -13,7 +13,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-SKILL-blueviolet.svg)](https://docs.anthropic.com/en/docs/claude-code)
 [![Bash](https://img.shields.io/badge/bash-3.2%2B-green.svg)]()
-[![Version](https://img.shields.io/badge/version-0.3.2-black.svg)]()
+[![Version](https://img.shields.io/badge/version-0.3.3-black.svg)]()
 [![GPT-Image-2.5](https://img.shields.io/badge/GPT--Image-2.5-Flare%20%2F%20Sunburst-0d9488.svg)]()
 
 **39个电商场景模板 · GPT-Image-2.5双模型路由 · Campaign套图一致性 · 平台技术预检 · Edit矩阵 · 产品动图 · 反AI感双层过滤**
@@ -25,6 +25,8 @@
 ---
 
 ## 项目简介
+
+E-Commerce Image Generator 是由 **buluslan（公众号：新西楼.AI）** 研发的开源电商做图 Skill。
 
 你输入产品素材、目标平台和做图需求，E-Commerce Image Generator 会匹配 39 个场景模板，组装可复用的生成或编辑提示词，再按你配置的端点与模型输出图片；随后用脚本检查白底、前景占比与 OCR 状态，并给出需要人工确认的平台风险，最后交付图片、提示词包和检查结果。
 

@@ -8,7 +8,7 @@ allowed-tools:
   - Read
   - Write
 metadata:
-  version: 0.3.2
+  version: 0.3.3
   category: e-commerce/image-generation
   license: MIT
   compatibility: 'Provider-agnostic via `--mode` (default `auto`: api > manual). (a) api mode — ANY OpenAI-compatible endpoint via env: `$IMAGE_API_BASE` (default https://api.openai.com) + `$IMAGE_API_KEY` (legacy `$OPENAI_API_KEY` respected) + `$IMAGE_MODEL` (default gpt-image-2.5-flare); works with official OpenAI, relays, and cloud gateways; reference images ride in `image_urls` with automatic `/v1/images/edits` multipart fallback. (b) manual mode — zero-channel: exports a prompt pack (prompt.txt + request.json) to paste into ChatGPT or curl yourself. (c) cli mode (codex exec) — DEPRECATED legacy. bash 3.2+ + jq + curl. Tested on Mac/Linux. Optional for the compliance_check script (Step 7): Python 3.9+ + Pillow 10.x (arm64 native — re-install with `arch -arm64 pip3 install --force-reinstall Pillow` if `_imaging.so` fails to load) and tesseract + pytesseract (OCR auto-degrades when missing).'
