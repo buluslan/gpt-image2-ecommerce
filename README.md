@@ -26,13 +26,12 @@
 
 ## 项目简介
 
-我是 Buluu（公众号：新西楼.AI），一直在跨境电商一线用 AI 干活。这个 Skill 是我自己做 listing 图用出来的工具——2026 年 4 月发了第一版，这一版是接上 GPT-Image-2.5 的大升级：双模型自动选型、39 个场景、出图通道彻底放开。
+E-Commerce Image Generator 是由 buluslan（公众号：新西楼.AI）研发的电商做图 Skill，他会把你一句话的做图需求，编排成专业级提示词直接出图——39 个电商场景自动匹配、GPT-Image-2.5 双模型自动选型（Flare 快出草稿 / Sunburst 保标签精修）、平台合规顺手检查掉，从白底主图、场景图、A+、卖点信息图到多变体 SKU、产品动图、爆款换品、整套图小语种翻译，一套 Listing 的图一个 Skill 包圆。设计师要等一周的活，他几分钟出一整套。
 
-做跨境的都懂做图的痛：找设计师出一套图，等一周改三天；自己让 AI 画，要么一股 AI 味，要么文字全是乱码，食品能拍出塑料感。这个 Skill 只干一件事：**你说要什么图，它把提示词编排到专业水准，顺手把平台合规也查了**。白底主图、场景图、A+、卖点信息图、多变体 SKU、产品动图、爆款换品、整套图翻译成小语种——39 个场景都在。哪个模型出图（Flare 快还是 Sunburst 精）、什么尺寸参数、哪些词碰不得，它替你判断。
+> [!TIP]
+> **更多跨境电商 AI 实战内容，请关注公众号「新西楼.AI」**
 
-至于在哪出图——你自己定。官方 OpenAI、任何 OpenAI 兼容中转、云网关都行；一个 key 都没有也能用（导出 prompt 包，贴进 ChatGPT 就出图）。
-
-**Agent 通用**：本工具是标准 Claude Code skill（bash + jq + curl），可在任何能执行 shell 命令的 AI Agent 中使用——Claude Code、Codex、Cursor、OpenClaw、Windsurf 或直接终端。
+作为 **Agent 原生** 工具，他适配 Claude Code、Codex、Cursor、OpenClaw 等主流 AI Coding Agent，bash + jq + curl 就能跑。**通道无关**——出图端点你自己定：官方 OpenAI、任何 OpenAI 兼容中转、云网关都行；一个 key 都没有也能用（导出 prompt 包，贴进 ChatGPT 就出图）。
 
 ---
 
