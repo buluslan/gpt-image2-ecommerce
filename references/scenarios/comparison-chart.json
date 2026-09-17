@@ -1,0 +1,111 @@
+{
+  "id": "comparison-chart",
+  "name": "竞品对比图（横向 vs 对比）",
+  "keywords": [
+    "对比图",
+    "竞品对比",
+    "vs",
+    "comparison",
+    "横向对比",
+    "comparison chart",
+    "vs竞品",
+    "功能对比"
+  ],
+  "trigger_phrases": [
+    "竞品对比",
+    "vs对比",
+    "comparison",
+    "对比表",
+    "vs竞品",
+    "功能对比图",
+    "横向对比"
+  ],
+  "prompt_template": {
+    "type": "side-by-side competitor comparison graphic",
+    "subject": "{product_description} vs {competitor_description}",
+    "layout": "split comparison with our brand highlighted",
+    "criteria": "{comparison_criteria}",
+    "visual_cue": "checkmark vs cross / filled vs empty / glowing vs muted",
+    "quality": "clean infographic comparison, professional e-commerce,"
+  },
+  "defaults": {
+    "layout": "our brand left (highlighted) vs generic/competitor right (muted)",
+    "criteria": "5-7 criteria with checkmark/cross icons",
+    "visual_cue": "green checkmark for ours, gray cross for competitor"
+  },
+  "variants": {
+    "checkmark-grid": {
+      "description": "勾叉网格（功能矩阵）",
+      "overrides": {
+        "layout": "criteria rows, two columns (Our Brand / Generic), checkmark vs cross",
+        "visual_cue": "green check / red cross"
+      }
+    },
+    "spec-bars": {
+      "description": "规格条形对比（数值可视）",
+      "overrides": {
+        "layout": "horizontal bar chart per criterion, our bar longer and brand-colored",
+        "visual_cue": "filled bar vs partial bar"
+      }
+    },
+    "split-image": {
+      "description": "左右分屏图像对比",
+      "overrides": {
+        "layout": "vertical split image: our product result left, competitor result right, label both",
+        "visual_cue": "our side bright and sharp, competitor side dull"
+      }
+    },
+    "venn": {
+      "description": "韦恩图式（突出独有优势）",
+      "overrides": {
+        "layout": "two overlapping circles, our-only advantages in the non-overlap zone",
+        "visual_cue": "our exclusive features highlighted in brand color"
+      }
+    }
+  },
+  "category_tips": {
+    "beauty": "对比功效（保湿度/光泽/吸收）/成分（天然%/添加剂）",
+    "electronics": "对比规格（续航/分辨率/快充）/兼容性",
+    "food": "对比成分（糖/卡路里/蛋白）/工艺",
+    "fashion": "对比材质（支数/填充）/工艺（缝线密度）",
+    "home": "对比耐用性/材质/环保认证",
+    "jewelry": "对比切工/净度/镶嵌工艺",
+    "sports": "对比科技参数/轻量化/防护等级"
+  },
+  "examples": [
+    "蓝牙耳机竞品对比图：左侧 'OUR BRAND'（深蓝高亮）蓝牙耳机，右侧 'Generic Brand'（灰色）耳机。中间 6 行功能对比：①主动降噪 ✓vs✗ ②续航 36h vs 8h ③IPX5 防水 ✓vs✗ ④蓝牙 5.3 vs 5.0 ⑤快充 ✓vs✗ ⑥通话降噪 ✓vs✗。绿勾红叉，品牌色高亮我方，2000x2000px",
+    "蛋白粉竞品对比条形图：顶部品牌标题，下方 5 行水平条形对比（蛋白含量/糖含量/BCAA/吸收率/溶解度），我方条形更长且为品牌蓝色，竞品条形短且灰色，右侧标注具体数值，干净信息图风，2000x2000px",
+    "瑜伽垫竞品分屏对比：左半屏 'OURS'（厚度回弹、防滑抓地、无异味，明亮清晰），右半屏 'THEIRS'（薄、易滑、有异味，灰暗模糊），中间细分隔线，底部 4 项 ✓/✗ 对比，专业电商信息图，2000x2000px"
+  ],
+  "anti_ai_tips": "常见翻车：竞品被画成具体品牌（侵权风险）、勾叉图标风格不一、对比数据无依据（虚假宣传）。修复：竞品统一用 'Generic Brand' 不指名；勾叉图标系统统一；数据须真实可证。",
+  "supports_image_reference": true,
+  "platform_constraints": {
+    "amazon": {
+      "comparison_rule": "禁止指名具体竞品品牌对比（违反 A+ 政策）；可用 'Brand X' / 'Generic' / 'Leading Brand'",
+      "claim_rule": "对比数据须可验证，'our' 一列不得全勾无依据",
+      "note": "本模板默认 vs Generic，避免侵权"
+    }
+  },
+  "text_assets": {
+    "our_label": "我方标签（建议 'OUR BRAND' / 品牌名）",
+    "competitor_label": "竞品标签（建议 'Generic Brand' / 'Brand X'，禁止指名）",
+    "criteria_labels": "对比维度标签数组",
+    "our_values": "我方对应数值/状态数组",
+    "competitor_values": "竞品对应数值/状态数组",
+    "note": "文字渲染用引号包裹+ALL CAPS；禁止出现真实竞品商标名"
+  },
+  "ref_roles": [
+    {
+      "index": 0,
+      "role": "our product reference — feature in the 'our brand' side",
+      "preserve": [
+        "product appearance",
+        "brand logo",
+        "label"
+      ],
+      "instruction": "The 'OUR BRAND' side of the comparison MUST feature the reference product with correct appearance and branding. The competitor side is a generic/neutral product illustration, not a real competitor brand."
+    }
+  ],
+  "campaign_id": "",
+  "model_hint": "gpt-image-2.5-sunburst"
+}

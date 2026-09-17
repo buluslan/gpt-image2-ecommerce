@@ -1,0 +1,118 @@
+{
+  "id": "edit-seasonal",
+  "name": "换季（同产品不同季节氛围）",
+  "keywords": [
+    "换季",
+    "季节氛围",
+    "圣诞版",
+    "春节版",
+    "夏日版",
+    "seasonal edit",
+    "节日换肤",
+    "季节改图"
+  ],
+  "trigger_phrases": [
+    "换季",
+    "做个圣诞版",
+    "春节氛围",
+    "夏日版本",
+    "seasonal edit",
+    "节日换肤",
+    "同款换个季节"
+  ],
+  "prompt_template": {
+    "type": "seasonal atmosphere swap (preserve product, change season/holiday mood)",
+    "subject": "{product_description}, identical product as reference",
+    "seasonal_setting": "{target_season_or_holiday} setting with thematic props",
+    "lighting": "season-matched color temperature and lighting",
+    "quality": "seasonal re-styling,"
+  },
+  "defaults": {
+    "seasonal_setting": "Christmas: pine branches, red ribbon, warm bokeh lights",
+    "lighting": "warm cinematic seasonal tone"
+  },
+  "variants": {
+    "christmas": {
+      "description": "圣诞（松枝/红丝带/暖灯/雪）",
+      "overrides": {
+        "seasonal_setting": "pine branches, red velvet ribbon, gold ornaments, warm fairy lights, soft snow",
+        "lighting": "warm golden bokeh, cozy cinematic"
+      }
+    },
+    "spring-festival": {
+      "description": "春节（红金/灯笼/梅花/福字）",
+      "overrides": {
+        "seasonal_setting": "red and gold palette, paper lantern, plum blossom branch, subtle '福' character, gold foil",
+        "lighting": "warm festive red glow"
+      }
+    },
+    "summer": {
+      "description": "夏日（阳光/棕榈/海滩/冰晶）",
+      "overrides": {
+        "seasonal_setting": "tropical palm leaves, sand, ice crystals, citrus slices, bright sky",
+        "lighting": "bright cool daylight, fresh"
+      }
+    },
+    "autumn": {
+      "description": "秋日（枫叶/南瓜/肉桂/暖木）",
+      "overrides": {
+        "seasonal_setting": "maple leaves, mini pumpkin, cinnamon sticks, warm walnut wood surface",
+        "lighting": "amber golden hour window light"
+      }
+    },
+    "valentine": {
+      "description": "情人节（玫瑰/粉调/丝绒）",
+      "overrides": {
+        "seasonal_setting": "pink and red roses, velvet drape, soft pearls, rose petals",
+        "lighting": "soft romantic pink glow"
+      }
+    },
+    "halloween": {
+      "description": "万圣节（南瓜灯/紫调/烟雾）",
+      "overrides": {
+        "seasonal_setting": "carved pumpkin, purple mist, dark gothic props, candlelight",
+        "lighting": "moody purple-orange candlelit"
+      }
+    }
+  },
+  "category_tips": {
+    "beauty": "圣诞=红金+雪花膏质感；春节=红金+中国风花卉；夏日=透明水滴+冰感",
+    "food": "圣诞=姜饼/可可；春节=红色礼盒+金；夏日=冰块+薄荷叶；秋日=枫糖+肉桂",
+    "home": "圣诞=松枝+暖灯；春节=中国结+红灯笼；夏日=贝壳+亚麻；秋日=干花+暖毯",
+    "candles": "随季节匹配 scent 视觉化（春=花/夏=柑橘/秋=肉桂/冬=松木）",
+    "fashion": "节日丝绒/针织质感；夏日亚麻；秋日羊毛格纹",
+    "jewelry": "圣诞=红绿宝石；情人节=粉钻玫瑰；春节=红玛瑙金",
+    "electronics": "节日限定色包装/丝带，但设备本身不染色"
+  },
+  "examples": [
+    "Input: 香薰蜡烛白色款白底图。Output: 同一款蜡烛（蜡体、杯身、Logo 不变），场景换成圣诞节：松枝环绕、红色丝绒缎带、金色铃铛、暖黄串灯散景、窗台薄雪，暖色电影感光，1080x1350px",
+    "Input: 护肤套装白底图。Output: 同一套产品（瓶身/料体/烫金不变），场景换成春节：红金调背景、纸灯笼、梅花枝、若有文字则楷体小字、金色洒金，暖红节日光，1080x1350px",
+    "Input: 保温杯白底图。Output: 同一款杯子（颜色/Logo/容量刻度不变），场景换成夏日：棕榈叶投影、冰块、柠檬片、蓝色水珠、明亮日光，清凉感色调，1080x1350px"
+  ],
+  "anti_ai_tips": "常见翻车：产品本身被季节化染色（错误）、节日道具喧宾夺主盖过产品、季节光把产品颜色拍偏。修复：明确 'product appearance unchanged' + 'product remains the focal point, props are background only'。",
+  "supports_image_reference": true,
+  "platform_constraints": {
+    "amazon": {
+      "seasonal_listing_rule": "节日副图可加氛围；主图若用作节日 Listing 主图仍须纯白底无道具",
+      "note": "edit-seasonal 产物默认作为副图，不替代主图"
+    }
+  },
+  "ref_roles": [
+    {
+      "index": 0,
+      "role": "product anchor — keep product identical, change only seasonal atmosphere",
+      "preserve": [
+        "product appearance",
+        "product color",
+        "brand logo",
+        "label text",
+        "viewing angle",
+        "scale",
+        "material finish"
+      ],
+      "instruction": "The product in the seasonal scene MUST be the identical product from the reference: same color, same logo, same label, same angle, same scale. Only the surrounding props, background, and lighting mood change to match the target season/holiday."
+    }
+  ],
+  "campaign_id": "",
+  "model_hint": "gpt-image-2.5-sunburst"
+}

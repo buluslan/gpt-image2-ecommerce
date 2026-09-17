@@ -1,0 +1,118 @@
+{
+  "id": "hero-image",
+  "name": "白底/纯色底产品主图",
+  "keywords": [
+    "白底图",
+    "主图",
+    "hero image",
+    "白背景",
+    "product shot",
+    "packshot",
+    "产品照",
+    "商品主图"
+  ],
+  "trigger_phrases": [
+    "产品主图",
+    "白底图",
+    "白背景产品",
+    "hero image",
+    "电商主图",
+    "纯色背景"
+  ],
+  "prompt_template": {
+    "type": "product photography",
+    "subject": "{product_description}",
+    "background": "clean white background",
+    "lighting": "soft diffused studio lighting, even illumination",
+    "composition": "centered, front view",
+    "quality": "commercial e-commerce photography"
+  },
+  "defaults": {
+    "background": "clean white background",
+    "lighting": "soft diffused studio lighting",
+    "composition": "centered, front view"
+  },
+  "variants": {
+    "luxury": {
+      "description": "高端奢侈品风格",
+      "overrides": {
+        "lighting": "Rembrandt lighting, subtle rim light",
+        "background": "gradient from dark to light, premium feel"
+      }
+    },
+    "fresh": {
+      "description": "清新自然风格",
+      "overrides": {
+        "lighting": "bright natural light",
+        "background": "light pastel tones"
+      }
+    },
+    "tech": {
+      "description": "科技感风格",
+      "overrides": {
+        "lighting": "dramatic side lighting",
+        "background": "dark minimalist"
+      }
+    },
+    "color": {
+      "description": "彩色背景风格",
+      "overrides": {
+        "background": "{color} gradient background"
+      }
+    },
+    "cosmetics-packshot": {
+      "description": "化妆品 packshot（sunburst 定稿）",
+      "overrides": {
+        "type": "cosmetics packshot",
+        "subject": "{product_description}: frosted glass bottle with amber serum, water droplets on the surface",
+        "background": "seamless pale pink backdrop",
+        "quality": "high detail commercial product photography"
+      }
+    }
+  },
+  "category_tips": {
+    "beauty": "emphasize texture and glow, show formula details",
+    "electronics": "highlight metallic finish, screen details, port precision",
+    "food": "vibrant colors, fresh appearance, show texture",
+    "fashion": "show fabric texture, drape quality, stitching details",
+    "home": "show material quality, craftsmanship, lifestyle appeal",
+    "jewelry": "macro detail, sparkle and cut quality, luxurious lighting"
+  },
+  "examples": [
+    "{product}, professional product photography on clean white background, soft diffused studio lighting, centered, commercial e-commerce photography, no shadows, no props",
+    "{product} on pure white seamless background, bright commercial studio lighting, centered, 3/4 profile, marketplace ready, {material_description}",
+    "{product} floating slightly above white surface, softbox overhead, sharp rim light on edges, professional packshot, textures"
+  ],
+  "anti_ai_tips": "",
+  "supports_image_reference": true,
+  "platform_constraints": {
+    "amazon": {
+      "background": "RGB(255,255,255) pure white",
+      "foreground_ratio": ">=85%",
+      "no_text_logo": true,
+      "aspect": "1:1",
+      "min_size": "1000px",
+      "note": "标准 Amazon 主图:纯白底(RGB 255,255,255)、产品占比>=85%、无文字/Logo/水印/边框、fill-frame。本模板即为主图专用。"
+    },
+    "shopify": {
+      "aspect": "flexible (1:1 product, 16:9 banner)",
+      "min_size": "2048px",
+      "note": "Shopify 产品主图,建议纯白底,1:1。"
+    }
+  },
+  "ref_roles": [
+    {
+      "index": 1,
+      "role": "product appearance reference",
+      "preserve": [
+        "logo",
+        "color",
+        "shape",
+        "texture"
+      ]
+    }
+  ],
+  "campaign_id": "",
+  "baseline_25": "Studio product hero of a matte ceramic espresso cup on a warm stone pedestal, soft window light, 85mm lens look, minimal beige backdrop, crisp shadow",
+  "model_hint_v_cosmetics": "gpt-image-2.5-sunburst"
+}

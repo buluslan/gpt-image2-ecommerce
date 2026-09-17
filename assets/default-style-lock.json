@@ -1,0 +1,98 @@
+{
+  "_meta": {
+    "name": "default-style-lock",
+    "purpose": "Conservative fallback Style Lock when the user provides no brand spec. Safe for any category / region; never spectacular but never wrong.",
+    "usage": "Read by Claude at SKILL.md Step 4 when (a) campaign task detected AND (b) no brand colors/fonts/VI supplied. Apply category_overrides.color_palette for the detected category, then apply region adjustments per campaign-style-lock.md section 6. Assemble the final 10 fields via prepend_template and prepend the rendered LOCK block verbatim to every image prompt in the set.",
+    "single_source_of_truth": "Field definitions and region table live in references/campaign-style-lock.md. This file holds ONLY the default values + category color branches. Do not duplicate region/lock semantics here.",
+    "version": "baseline"
+  },
+  "visual_direction": "commercial product photography, consistent across the entire set",
+  "color_palette": {
+    "primary": "#FFFFFF (white background)",
+    "secondary": "#F5F5F5 (light gray surface)",
+    "text": "#2C2C2C (charcoal)",
+    "accent": "#0066CC (blue highlight)",
+    "note": "Neutral, high-contrast, marketplace-safe. Override accent via category_overrides or user brand color."
+  },
+  "color_temperature": "neutral, balanced white balance ~5500K, no strong warm/cool cast",
+  "typography": {
+    "headings": "Inter Bold",
+    "body": "Inter Regular",
+    "emphasis": "Inter SemiBold",
+    "fallback": "Helvetica, Arial, sans-serif",
+    "cjk_fallback": "Source Han Sans / Noto Sans CJK (add when target market includes CN/JP/KR/SEA)"
+  },
+  "background_system": "clean light gray studio sweep, subtle gradient from #F5F5F5 to #E8E8E8, no distracting props",
+  "lighting_system": "soft diffused daylight from top-left, gentle falloff, even illumination, subtle rim light on right edge",
+  "layout_system": "rule of thirds, product centered or center-left, generous whitespace, left-aligned text blocks",
+  "icon_system": "thin-line minimal icons, 2px stroke, 4px corner radius, monochrome in accent color #0066CC",
+  "product_presentation": "front 3/4 angle, product occupies 60-70% of frame, no crop on edges, sharp focus throughout",
+  "locked_immutable": "color palette, typography, background hue, lighting direction, icon style, product angle",
+  "category_overrides": {
+    "note": "When the detected product category matches a key below, override ONLY color_palette and color_temperature; keep all other default fields. These are conservative commercial defaults, not stylized extremes.",
+    "electronics": {
+      "color_palette": {
+        "primary": "#F5F5F5 (light gray background)",
+        "secondary": "#2A2A2A (dark charcoal surface)",
+        "text": "#1A1A1A (near-black)",
+        "accent": "#0066CC (electric blue highlight)"
+      },
+      "color_temperature": "cool, blue-white tint ~6500K, clean precise feel"
+    },
+    "beauty": {
+      "color_palette": {
+        "primary": "#FFFFFF (clean white background)",
+        "secondary": "#FBEDE6 (soft blush surface)",
+        "text": "#3A2A2A (warm brown text)",
+        "accent": "#C97B63 (warm terracotta highlight)"
+      },
+      "color_temperature": "warm, soft golden tint ~4500K, gentle glow"
+    },
+    "food": {
+      "color_palette": {
+        "primary": "#FFFFFF (clean white background)",
+        "secondary": "#F5E6C8 (warm cream surface)",
+        "text": "#3D2914 (deep brown text)",
+        "accent": "#D4351C (appetite-red highlight)"
+      },
+      "color_temperature": "warm, golden tint ~4000K, appetizing"
+    },
+    "fashion": {
+      "color_palette": {
+        "primary": "#F5F5F5 (light gray background)",
+        "secondary": "#E8E8E8 (neutral surface)",
+        "text": "#2C2C2C (charcoal text)",
+        "accent": "#8B7355 (warm taupe highlight)"
+      },
+      "color_temperature": "neutral, balanced ~5200K, true-to-fabric"
+    },
+    "home": {
+      "color_palette": {
+        "primary": "#F7F3EC (warm off-white background)",
+        "secondary": "#E8E2D9 (beige surface)",
+        "text": "#3A3530 (warm dark text)",
+        "accent": "#8B6F47 (warm wood brown highlight)"
+      },
+      "color_temperature": "warm, natural daylight ~5000K, cozy"
+    },
+    "jewelry": {
+      "color_palette": {
+        "primary": "#FFFFFF (clean white background)",
+        "secondary": "#1A1A1A (deep black surface for contrast)",
+        "text": "#2C2C2C (charcoal text)",
+        "accent": "#D4AF37 (metallic gold highlight)"
+      },
+      "color_temperature": "neutral, balanced ~5500K, sparkle-enhancing"
+    },
+    "sports": {
+      "color_palette": {
+        "primary": "#F5F5F5 (light gray background)",
+        "secondary": "#E0E0E0 (cool surface)",
+        "text": "#1A1A1A (high-contrast text)",
+        "accent": "#FF6B35 (energetic orange highlight)"
+      },
+      "color_temperature": "neutral, crisp ~5800K, dynamic"
+    }
+  },
+  "prepend_template": "[CAMPAIGN LOCK — campaign_id: {campaign_id}]\nVisual direction: {visual_direction}\nColor palette: {color_palette}\nColor temperature: {color_temperature}\nTypography: {typography}\nBackground: {background_system}\nLighting: {lighting_system}\nLayout: {layout_system}\nIcon style: {icon_system}\nProduct presentation: {product_presentation}\nLOCKED across entire set: {locked_immutable}\n[/CAMPAIGN LOCK]\n\n{per_image_5slot_prompt}"
+}

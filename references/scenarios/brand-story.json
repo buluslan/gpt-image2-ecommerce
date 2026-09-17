@@ -1,0 +1,118 @@
+{
+  "id": "brand-story",
+  "name": "品牌故事图（创始人/工艺/传承叙事）",
+  "keywords": [
+    "品牌故事",
+    "brand story",
+    "创始人",
+    "工艺",
+    "传承",
+    "匠心",
+    "brand narrative",
+    "品牌叙事"
+  ],
+  "trigger_phrases": [
+    "品牌故事",
+    "brand story",
+    "创始人故事",
+    "工艺叙事",
+    "传承故事",
+    "匠心图",
+    "品牌叙事"
+  ],
+  "prompt_template": {
+    "type": "brand story / heritage narrative graphic",
+    "subject": "{brand_or_product_description}",
+    "narrative_angle": "{story_angle}",
+    "visual_elements": "{story_elements}",
+    "mood": "editorial documentary tone, authentic human touch",
+    "quality": "cinematic brand documentary photography,"
+  },
+  "defaults": {
+    "narrative_angle": "craftsmanship heritage — maker at work",
+    "visual_elements": "artisan hands, workshop, raw materials, tools, finished product",
+    "mood": "warm documentary, authentic, human"
+  },
+  "variants": {
+    "founder": {
+      "description": "创始人故事（人物 + 工坊 + 起源）",
+      "overrides": {
+        "narrative_angle": "founder portrait in workshop with origin story",
+        "visual_elements": "founder, workshop, early prototypes, signature, brand milestone"
+      }
+    },
+    "craftsmanship": {
+      "description": "工艺叙事（匠人制作过程）",
+      "overrides": {
+        "narrative_angle": "craftsman hands making the product step by step",
+        "visual_elements": "skilled hands, raw material → finished good, tools, focused expression"
+      }
+    },
+    "heritage": {
+      "description": "传承叙事（代际/历史/经典）",
+      "overrides": {
+        "narrative_angle": "generational heritage, vintage reference, time progression",
+        "visual_elements": "old photo, generational hands, archival materials, modern product"
+      }
+    },
+    "origin": {
+      "description": "产地溯源（源头原料/原产地）",
+      "overrides": {
+        "narrative_angle": "origin sourcing journey — where ingredients/materials come from",
+        "visual_elements": "origin landscape, raw source, local hands, harvest/extract moment"
+      }
+    },
+    "process": {
+      "description": "工艺流程（多步骤匠造）",
+      "overrides": {
+        "narrative_angle": "multi-step making process collage",
+        "visual_elements": "4-6 process steps with hand + tool + material transformation"
+      }
+    }
+  },
+  "category_tips": {
+    "beauty": "成分产地（普罗旺斯薰衣草/北海道矿物质）+ 实验室工艺 + 调香师/配方师人物",
+    "food": "原产地农场 + 农人 + 收获瞬间 + 传统工艺；溯源真实可证",
+    "fashion": "设计师画稿 + 裁缝手工 + 面料选择 + 缝制细节",
+    "home": "匠人手作 + 木材/陶瓷原料 + 工具 + 半成品到成品",
+    "jewelry": "设计师手稿 + 镶嵌师 + 古法工艺 + 传承工坊",
+    "electronics": "工程师原型迭代 + 实验室测试 + 设计草图（科技品牌的'匠心'）",
+    "sports": "运动员参与设计 + 材料研发 + 测试场景"
+  },
+  "examples": [
+    "护肤品牌创始人故事图：法国普罗旺斯工坊，50 岁女性创始人手持新鲜薰衣草束，背景是蒸馏设备和木质操作台，窗光斜入，桌上有手写配方笔记本和早期产品原型，暖调纪实风，电影感人像，1500x2000px",
+    "手工皮包工艺叙事图：匠人双手正在缝制棕色皮革包，特写手指与针线、木桌上的皮料裁片、金属工具、皮革打孔器，背景虚化的成品包，温暖的工坊窗光，纪录片质感，1500x2000px",
+    "咖啡品牌产地溯源图：埃塞俄比亚高原咖啡庄园，当地农人手持红色咖啡樱桃，背景是咖啡树丛和远山，晨光，原始真实的人与土地连接，纪实摄影风，1500x2000px"
+  ],
+  "anti_ai_tips": "常见翻车：人物面部失真（AI 假人感）、手指畸形、过度唯美失真、人物肤色/服饰刻板。修复：强调 'authentic documentary tone' + 'real human hands (anatomically correct)'；避免 'perfect flawless model'。",
+  "supports_image_reference": true,
+  "platform_constraints": {
+    "amazon": {
+      "usage_rule": "品牌故事图适合 A+ 品牌故事模块或 Brand Store；不作为 Listing 主图",
+      "authenticity_rule": "品牌故事须真实可证（真实创始人/真实工艺），虚构叙事有虚假宣传风险",
+      "note": "若品牌为新品无传承，推荐用 craftsmanship / process 角度而非虚构 founder"
+    }
+  },
+  "text_assets": {
+    "brand_name": "品牌名",
+    "story_headline": "故事主标题（建议≤10 词，叙事性）",
+    "founding_year": "创立年份（若适用）",
+    "origin_place": "产地/工坊地（若适用）",
+    "note": "文字渲染用引号包裹+ALL CAPS；故事文案宜短，留白让画面叙事"
+  },
+  "ref_roles": [
+    {
+      "index": 0,
+      "role": "brand product reference — anchor the story with this product",
+      "preserve": [
+        "product appearance",
+        "brand logo",
+        "brand identity color"
+      ],
+      "instruction": "The product shown in the brand story scene MUST match the reference product branding. The narrative scene (workshop, founder, craft) is composed authentically around it."
+    }
+  ],
+  "campaign_id": "",
+  "model_hint": "gpt-image-2.5-sunburst",
+  "baseline_25": "Layered paper cut illustration of a mountain lake sunrise, five depth layers, soft pastel palette, subtle drop shadows, art print composition"
+}

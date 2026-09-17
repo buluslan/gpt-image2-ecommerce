@@ -1,0 +1,102 @@
+{
+  "id": "packaging-unbox",
+  "name": "包装拆箱流程图（开箱步骤/层次展示）",
+  "keywords": [
+    "拆箱",
+    "开箱",
+    "unboxing",
+    "拆箱流程",
+    "开箱步骤",
+    "层次展示",
+    "包装层次",
+    "unboxing sequence"
+  ],
+  "trigger_phrases": [
+    "拆箱流程",
+    "开箱步骤",
+    "unboxing",
+    "开箱图",
+    "拆箱层次",
+    "包装层次展示",
+    "unboxing sequence"
+  ],
+  "prompt_template": {
+    "type": "unboxing sequence / packaging layer reveal",
+    "subject": "{product_description} unboxing journey",
+    "sequence": "{unboxing_steps}",
+    "presentation": "step-by-step reveal OR exploded layer view",
+    "surface": "premium neutral surface",
+    "quality": "editorial unboxing photography, consistent lighting,"
+  },
+  "defaults": {
+    "sequence": "4-step reveal: sealed box → sleeve off → inner tray → product with accessories",
+    "presentation": "horizontal 4-panel strip, consistent composition"
+  },
+  "variants": {
+    "step-strip": {
+      "description": "横向步骤条（4-6 步并排）",
+      "overrides": {
+        "sequence": "4-6 sequential panels left to right, each a unboxing stage",
+        "presentation": "horizontal strip with subtle step numbers"
+      }
+    },
+    "exploded-layers": {
+      "description": "爆炸分层图（垂直堆叠层次）",
+      "overrides": {
+        "sequence": "vertical exploded view: outer box → sleeve → tray → product → accessories",
+        "presentation": "stacked with subtle separation showing every layer"
+      }
+    },
+    "grid-2x2": {
+      "description": "2x2 步骤网格",
+      "overrides": {
+        "sequence": "4 key moments in 2x2 grid",
+        "presentation": "2x2 grid with consistent lighting"
+      }
+    },
+    "single-hero-open": {
+      "description": "单张开箱 hero（盖子打开瞬间）",
+      "overrides": {
+        "sequence": "single moment: box open, product revealed, tissue lifted",
+        "presentation": "hero shot with dramatic reveal lighting"
+      }
+    }
+  },
+  "category_tips": {
+    "beauty": "步骤含：开启 → 内附说明卡 → 防伪 → 试用小样 → 正品；强调仪式感与品牌卡",
+    "electronics": "步骤含：拉出盒 → 内泡棉定位 → 主机 → 配件盒 → 数据线/说明书；强调精密包装",
+    "food": "步骤含：外箱 → 保鲜密封 → 单独包装 → 食品本体；强调新鲜与卫生",
+    "fashion": "步骤含：礼盒 → 牛皮纸 → 品牌贴纸 → 服饰 → 标签/护理卡；强调质感",
+    "home": "步骤含：环保外箱 → 缓冲材 → 主产品 → 配件包 → 说明书；强调环保与完整",
+    "jewelry": "步骤含：礼盒 → 丝绒内胆 → 防尘袋 → 首饰 → 证书；强调奢华仪式",
+    "sports": "步骤含：彩盒 → 缓冲 → 主器材 → 配件（电池/充电器）→ 说明书；强调专业配套"
+  },
+  "examples": [
+    "智能手表拆箱流程横向 4 步：①封条未拆彩盒正面 ②彩盒盖开启露出说明书 ③取出上层露出黑色内胆里的手表本体 ④手表+磁吸充电器+说明书全部陈列。一致米色台面、顶光、编辑风开箱摄影，2400x1200px",
+    "珠宝礼盒爆炸分层图（垂直）：最顶层品牌丝带 → 礼盒盖 → 防尘绒布 → 丝绒内胆 → 钻戒本体 → 底层证书卡片。每层微妙悬浮分离，深色奢华背景，戏剧聚光，1500x2000px",
+    "护肤套装开箱 2x2 网格：①礼盒外观烫金 Logo ②打开露出品牌问候卡 ③上层精华+乳液 ④下层赠送面膜小样。一致莫兰迪粉调、柔光、仪式感开箱，2000x2000px"
+  ],
+  "anti_ai_tips": "常见翻车：步骤间光线/角度漂移导致不像同一组照片、爆炸分层悬浮逻辑混乱、道具数量在不同步骤不一致（穿帮）。修复：明确 'consistent lighting and angle across all steps' + 'product count stays consistent'。",
+  "supports_image_reference": true,
+  "platform_constraints": {
+    "amazon": {
+      "listing_rule": "拆箱图适合做副图（强化开箱期待与完整度）；主图仍须纯白底产品图",
+      "expectation_rule": "拆箱步骤展示的内容必须与实际发货一致，不可虚增配件（差评风险）",
+      "note": "若用作 A+ 模块，注意尺寸匹配"
+    }
+  },
+  "ref_roles": [
+    {
+      "index": 0,
+      "role": "product master — show this product's unboxing experience",
+      "preserve": [
+        "product appearance",
+        "brand logo",
+        "label",
+        "accessory types"
+      ],
+      "instruction": "The product and its packaging branding MUST match the reference product. The unboxing sequence, surface, and props are composed to tell the reveal story with consistent lighting across all steps."
+    }
+  ],
+  "campaign_id": ""
+}

@@ -1,0 +1,102 @@
+{
+  "id": "edit-recolor",
+  "name": "换色（产品多色变体）",
+  "keywords": [
+    "换色",
+    "改色",
+    "recolor",
+    "颜色变体",
+    "多色",
+    "color variant",
+    "配色",
+    "颜色替换"
+  ],
+  "trigger_phrases": [
+    "换个颜色",
+    "换色",
+    "做个其他颜色",
+    "recolor",
+    "颜色变体",
+    "多色 SKU",
+    "同款不同色"
+  ],
+  "prompt_template": {
+    "type": "product recolor variant (preserve form, change only color/finish)",
+    "subject": "{product_description} in {target_color} colorway",
+    "preservation": "identical form factor, silhouette, proportions, logo, label, material texture pattern as reference",
+    "color_application": "{target_color} applied with realistic material response (matte/metallic/glossy as original)",
+    "quality": "color variant, consistent lighting,"
+  },
+  "defaults": {
+    "color_application": "matte finish matching original material",
+    "preservation": "same angle, same lighting, same background as reference"
+  },
+  "variants": {
+    "multi-sku-grid": {
+      "description": "多色 SKU 网格（同角度不同色排列）",
+      "overrides": {
+        "color_application": "N-color grid, each cell same product different color, consistent angle/lighting"
+      }
+    },
+    "matte-to-glossy": {
+      "description": "同色改工艺（哑光↔亮面）",
+      "overrides": {
+        "color_application": "same color, switch finish between matte / glossy / metallic"
+      }
+    },
+    "color-wheel": {
+      "description": "色环变体（6-8 色系一次性出）",
+      "overrides": {
+        "color_application": "8 product instances in a row, color sequence: red/orange/yellow/green/blue/purple/pink/neutral"
+      }
+    },
+    "brand-palette": {
+      "description": "品牌色板变体",
+      "overrides": {
+        "color_application": "apply brand palette {brand_colors} only"
+      }
+    }
+  },
+  "category_tips": {
+    "fashion": "保留面料褶皱走向、缝线、五金；新色按面料材质反应（丝绸高光/棉麻哑光）",
+    "footwear": "保留鞋型、鞋底、车线、扣件；只改鞋面主色，配件色可同步",
+    "electronics": "保留外壳工艺（阳极氧化/塑料/皮革）；新色保留金属或哑光质感",
+    "home": "保留器型、釉面纹理；陶瓷保留釉光，木器保留木纹",
+    "beauty": "保留瓶身质感（磨砂玻璃/亚克力/金属）；料体颜色按配方变化但保留透明度",
+    "jewelry": "保留切工、镶嵌；改金属色（玫瑰金/铂金/黄金）或宝石色",
+    "sports": "保留器材工艺；队色/俱乐部色按赛事规范"
+  },
+  "examples": [
+    "Input: 运动鞋灰色款产品图。Output: 同款鞋 6 色网格（黑/白/红/蓝/绿/粉），鞋型/鞋底/车线/Logo 完全一致，仅鞋面主色不同，每只保留原哑光网布质感，一致棚拍光，2000x2000px",
+    "Input: 真无线耳机黑色款。Output: 同一款耳机 4 色（午夜黑/星光白/深海蓝/玫瑰金），外壳金属阳极氧化质感保留，Logo/按键/网格不变，一致白底棚拍，1080x1080px",
+    "Input: 马克杯白色款。Output: 同一器型 8 色色环（莫兰迪色系），陶瓷釉光保留，把手/杯口/容量刻度一致，纯白底，2000x2000px"
+  ],
+  "anti_ai_tips": "常见翻车：换色后丢失材质纹理（塑料感变平）、Logo 跟着变色、金属件被错误染色、光照角度漂移。修复：显式 'material texture pattern preserved' 和 'logo/branding stays original color'。",
+  "supports_image_reference": true,
+  "platform_constraints": {
+    "amazon": {
+      "variant_rule": "多色 SKU 主图必须每色单独一张纯白底主图，不可拼图",
+      "note": "网格图仅可用于副图，主图仍要单 SKU 单图"
+    }
+  },
+  "ref_roles": [
+    {
+      "index": 0,
+      "role": "product form reference — recolor this exact product",
+      "preserve": [
+        "silhouette",
+        "form factor",
+        "proportions",
+        "viewing angle",
+        "brand logo",
+        "label layout",
+        "stitching lines",
+        "hardware position",
+        "material texture pattern"
+      ],
+      "instruction": "Only the primary surface color/finish may change. Logo, stitching, hardware, label, proportions, viewing angle MUST stay identical to the reference. The new color must respond to light with the correct material behavior (glossy reflects / matte scatters / metallic anodized)."
+    }
+  ],
+  "campaign_id": "",
+  "model_hint": "gpt-image-2.5-sunburst"
+}

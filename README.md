@@ -1,22 +1,24 @@
 <div align="center">
 
-<!-- Banner image placeholder - will be replaced after generation -->
-<img src="https://github.com/buluslan/gpt-image2-ecommerce/raw/main/assets/banner.png" alt="E-Commerce Image Generator" width="100%">
+<img src="assets/banner.png" alt="E-Commerce Image Generator" width="100%">
 
-# E-Commerce Image Generator
+# 🎨 E-Commerce Image Generator
 
-**GPT-Image-2 驱动的电商素材一键生成工具**
+**GPT-Image-2/2.5 驱动的跨境电商视觉资产生成工具——通道无关，39 个场景模板分钟级出专业产品图**
 
-**想了解更多最新AI行业动态，AI+电商/广告的行业实践方法，人与AI如何协作共生的思考，请关注公众号：【新西楼】**
+**想了解更多最新AI行业动态,AI+电商/广告的行业实践方法,人与AI如何协作共生的思考,请关注公众号:【新西楼.AI】**
+
 ![qrcode_for_gh_e3b954bd3859_258](https://github.com/user-attachments/assets/d8f068d9-c4f8-46c7-914c-fbcab5d52f2a)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.1.0-black.svg)]()
-[![Codex CLI](https://img.shields.io/badge/Codex-CLI-orange.svg)](https://github.com/openai/codex)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-SKILL-blueviolet.svg)](https://docs.anthropic.com/en/docs/claude-code)
+[![Bash](https://img.shields.io/badge/bash-3.2%2B-green.svg)]()
+[![Version](https://img.shields.io/badge/version-0.3.0-black.svg)]()
+[![GPT-Image-2.5](https://img.shields.io/badge/GPT--Image-2.5-Flare%20%2F%20Sunburst-0d9488.svg)]()
 
-**25个电商场景模板 | 智能模板匹配 | 参考图一致性 | 反AI感处理**
+**39个电商场景模板 · 2.5双模型路由 · Campaign套图一致性 · 平台合规层 · Edit矩阵 · 产品动图 · 反AI感双层过滤**
 
-**Created By Buluu@新西楼**
+**Created By Buluu@新西楼.AI**
 
 </div>
 
@@ -24,77 +26,80 @@
 
 ## 项目简介
 
-E-Commerce Image Generator 是一款基于 GPT-Image-2 的电商素材图片生成工具，通过 Codex CLI 调用生图能力。内置 **25 个专业电商场景的结构化提示词模板**，用自然语言描述需求即可自动匹配模板并生成高质量素材图。
+你输入一段做图需求（可附产品参考图），Skill 会把它路由到 39 个电商场景模板并组装成 GPT-Image-2/2.5 的分层提示词（出图通道由你决定：任何 OpenAI 兼容端点，或零通道导出 prompt 包手动使用），基于品类×风格冲突、平台合规、AI 感过滤三道质量闸做把关，套图任务还会锁定全套视觉一致性——白底主图、生活场景、A+ 卖点信息图、多变体 SKU、产品动图、爆款换品、批量翻译，最后输出一套带合规自检的商用级电商视觉素材。
 
-**兼容性广泛**：本工具基于 Codex CLI 命令行调用，可在任何能执行 shell 命令的 AI Agent 中使用：
-- Claude Code（作为 Skill 加载）
-- OpenClaw
-- Cursor
-- Windsurf
-- 直接终端命令行
+跨境卖家的做图现状：
 
-只要环境安装了 [Codex CLI](https://github.com/openai/codex)，任何 Agent 都可以直接调用 `codex exec` 命令使用这些模板生成图片。
+- ❌ 请设计师做一套 Listing 图，沟通成本高、周期以天计，改一版等一版
+- ❌ 直接让 AI 出图，AI 味重、文字乱码、品类风格踩雷（食品拍成了塑料感、美妆拍成了土味影楼）
+- ❌ 平台合规全靠肉眼记：Amazon 主图纯白底要求、AIGC 披露新规、各站点尺寸规范
+- ❌ 套图东一张西一张，风格漂移，listing 看起来像五个店拼的
 
----
-
-## 核心特性
-
-### 25 个电商场景模板
-
-全面覆盖电商视觉素材需求：
-
-| # | 场景 | 触发词示例 |
-|---|------|-----------|
-| 01 | 白底/纯色主图 | 白底图, 主图, hero image |
-| 02 | 生活场景图 | 场景图, 生活图, lifestyle |
-| 03 | 平铺图 | 平铺图, flat lay, 俯拍 |
-| 04 | 细节微距 | 细节图, 微距, macro |
-| 05 | 海报/Banner | 海报, poster, banner, 促销 |
-| 06 | 社交媒体 | 小红书, Instagram, TikTok |
-| 07 | UGC 买家秀 | UGC, 买家秀, GRWM |
-| 08 | 模特展示 | 模特, model, 人物展示 |
-| 09 | 使用前后对比 | 对比, before after |
-| 10 | 包装设计 | 包装, packaging, 礼盒 |
-| 11 | 信息图/A+ | 信息图, A+, 详情页 |
-| 12 | 创意概念广告 | 创意, 概念, creative |
-| 13 | 尺寸规格图 | 尺寸, 规格, 使用步骤 |
-| 14 | 多产品套装 | 套装, 组合, bundle |
-| 15 | 直播间场景 | 直播, livestream |
-| 16 | 虚拟试穿 | 试穿, 融入, try on |
-| 17 | 技术拆解图 | 拆解图, 爆炸图, exploded view |
-| 18 | 隐形模特 | 隐形模特, ghost mannequin |
-| 19 | 多角度网格 | 多角度, 网格, grid |
-| 20 | 杂志封面 | 杂志, 封面, editorial |
-| 21 | 季节营销 | 季节, 四季, campaign |
-| 22 | 奢华氛围 | 奢华, 氛围, 烟雾, luxury |
-| 23 | 设备模型 | mockup, SaaS, APP |
-| 24 | 店铺门面 | 店铺, 门面, storefront |
-| 25 | 运动广告 | 运动, 健身, sports |
-
-### 智能模板匹配
-
-自然语言描述 → 自动匹配最佳模板 → 组装精简 Prompt → 调用生图
-
-### 参考图支持
-
-传入产品白底图，保持品牌和产品外观一致性，生成结果更可靠。
-
-### 反 AI 感处理
-
-UGC、直播间、社交媒体场景内置 CCD 复古胶片质感、可见瑕疵等反 AI 处理，让素材更真实。
-
-### 风格变体
-
-每个场景提供 4 种风格变体，例如运动广告：产品主视觉 / 运动员动态 / 三联画 / 健身力量感。
+**Agent 通用**：本工具是标准 Claude Code skill（bash + jq + curl），可在任何能执行 shell 命令的 AI Agent 中使用——Claude Code、Codex、Cursor、OpenClaw、Windsurf 或直接终端。出图端点任选：官方 OpenAI API、任何 OpenAI 兼容中转/网关，或不配 API 直接导出 prompt 包。
 
 ---
 
-## 快速开始
+## ✨ 它做什么
 
-### 前置要求
+### 39 个电商场景模板
 
-- [Codex CLI](https://github.com/openai/codex) 已安装并登录
-- （可选）Claude Code 用于 Skill 模式自动匹配
+覆盖电商视觉素材全链路 + Edit 能力：
+
+| 类别 | 场景 |
+|------|------|
+| 产品展示 | 白底主图 hero / 生活场景 lifestyle / 平铺 flat-lay / 细节微距 / 多角度网格 / 隐形模特 / 创意概念 / 奢华氛围 |
+| 营销内容 | 海报 banner / 社交媒体 / UGC 买家秀 / 模特展示 / 直播间 / 季节营销 / 运动广告 / 杂志编辑风 / 礼盒节日 |
+| 信息与规格 | A+ 模块（970x600）/ 卖点信息图 / 尺寸规格图 / 对比图（vs 竞品）/ 品牌故事 / 包装展示 / 开箱流程 |
+| **Edit 矩阵** | 换背景 / 换色（SKU 变体）/ 换季 / 本地化 / 蒙版局部改——保产品像素级不变，只改你要改的 |
+| **动图与批量** | 产品动图 motion-gif（16 格帧图→GIF/WebP）/ 爆款换品 bulk-product-swap / 保版式批量翻译 bulk-translate / 透明抠图 transparent-cutout |
+
+（完整触发词路由表见 SKILL.md Step 2）
+
+### 2.5 双模型路由
+
+GPT-Image-2.5 双模型自动选型：**Flare**（快出草稿，延迟比 2.0 低 50%）vs **Sunburst**（保标签/logo 精修，画质超 2.0）——三问定夺 + 成本心智 + xhigh/max 新质量档，详见 `references/model-routing.md`。
+
+### 平台合规层
+
+**隐形合规**——卖家零视觉负担，skill 帮你合规不冒头：
+
+- **平台硬约束**：Amazon / TikTok Shop / Shopify / 速卖通 + Temu 的主图技术规范（A 类主图 RGB(255,255,255) 纯白底 / 占比 ≥85% / 无文字 Logo / 1:1 / ≥1000px）
+- **AIGC 法规追踪**：纽约 SB 8420-A / FTC / 加州 SB 942 + EU AI Act Art 50，含罚款金额 + 卖家硬要求
+- **`compliance_check.py` 自动检测**：背景白度 / 前景占比 / OCR 文字（OCR 可降级）
+- **图类型 4 分类**：A 实拍无人 / B 常规修图 / C 写实 AI 人物（必勾披露）/ D 复刻真人（主动拦截）
+- **三不红线**：不剥离 C2PA / SynthID、不教唆规避 AI 标注、不造假实拍
+
+### Campaign Style Lock 套图一致性
+
+**模板只是起点，一致性才是成品感**——10 字段 Lock + 6 层漏斗编排，保证整套 listing 从主图到包装 100% 同一品牌视觉：
+
+- **10 字段锁定协议** + prepend 机制：一套图从主图到包装视觉不漂移
+- **6 层漏斗 9 槽位套图编排**：精细模式（逐槽位编排）与快速通道（单 prompt 整套）双路线
+- **region 适配**：US / EU / SEA / CN / ME 审美查表
+
+### 反 AI 感双层过滤
+
+prompt 文字层（slop 词过滤 + 五要素组装法则）+ 视觉层（8 类 AI-tell 特征识别），核心工艺原理见 `references/craft.md`。
+
+---
+
+## 🚀 快速开始
+
+### 出图通道（任选其一，通道无关设计）
+
+**api 模式（推荐）**——任何 OpenAI 兼容端点，三个环境变量：
+
+```bash
+export IMAGE_API_BASE="https://api.openai.com"   # 或你的中转/网关 base
+export IMAGE_API_KEY="sk-xxx"                     # 兼容旧变量 OPENAI_API_KEY
+export IMAGE_MODEL="gpt-image-2.5-flare"          # 精修编辑用 gpt-image-2.5-sunburst
+```
+
+官方 OpenAI、各类 OpenAI 兼容中转、云网关（Vercel AI Gateway / Cloudflare Workers AI 等）均可；参考图自动走 `image_urls`，端点不认时自动回退官方 `/v1/images/edits`。
+
+**manual 模式（零通道）**——不配任何 API，导出 prompt 包贴进 ChatGPT 或自己 curl。
+
+**cli 模式**（codex exec）已 DEPRECATED legacy。
 
 ### 安装
 
@@ -102,97 +107,104 @@ UGC、直播间、社交媒体场景内置 CCD 复古胶片质感、可见瑕疵
 git clone https://github.com/buluslan/gpt-image2-ecommerce.git
 ```
 
-### 使用方式一：在 Agent 中（推荐）
+通用依赖：bash 3.2+ / jq / curl（Mac/Linux）。可选：Python 3.9+ + Pillow + tesseract（合规自检用，缺则自动降级）。
 
-在 Claude Code / OpenClaw 等支持 Skill 的 Agent 中，直接描述需求：
+### 用法一：在 Agent 中（推荐）
+
+放进 Claude Code skills 路径（Codex / Cursor 用户：把 SKILL.md 当指令喂给 agent 即可），直接描述需求：
 
 ```
 帮我生成一张电动自行车的运动广告图，暗色背景，速度感
+做一套 5 张风格一致的亚马逊 Listing 套图（主图+场景+卖点+对比+包装）
+给这个产品做个动图，主图动效那种自动循环的
+把这套爆款图换成我的产品，版式全保留
 ```
 
-```
-做一组护肤品白底主图，高端感
-```
+Agent 会自动匹配模板、组装 prompt、按场景选模型（Flare/Sunburst）、经你配置的通道生成图片、做合规自检。
 
-```
-咖啡豆的平铺图，温暖色调
-```
-
-Agent 会自动匹配模板、组装 prompt、调用 Codex CLI 生成图片。
-
-### 使用方式二：直接命令行
+### 用法二：直接命令行
 
 ```bash
-# 无参考图
-codex exec --ephemeral --skip-git-repo-check --sandbox read-only --color never - <<< "Use imagegen to create an image with this request:
-{
-  \"type\": \"product photography\",
-  \"subject\": \"frosted glass serum bottle with matte white cap\",
-  \"background\": \"clean white background\",
-  \"lighting\": \"soft diffused studio lighting\",
-  \"quality\": \"8K, commercial e-commerce photography\"
-}"
+# api 模式出图
+bash scripts/imagegen.sh \
+  --prompt-file <(echo '{"subject":"frosted glass serum bottle","scene_type":"product photography"}') \
+  --size 1024x1024 --quality high --mode api
 
-# 带参考图
-codex exec --ephemeral --skip-git-repo-check --sandbox read-only --color never \
-  --image /path/to/product.png \
-  - <<< "Use imagegen to create an image with this request:
-{...prompt JSON...}
+# manual 模式导出 prompt 包（零通道）
+bash scripts/imagegen.sh --prompt-file prompt.json --mode manual --output ./my-prompt-pack
 
-Reference image(s) are attached."
+# 合规自检（出图后）
+python3 scripts/compliance_check.py generated.png --platform amazon --strict | jq .
 ```
+
+stdout 是单个 JSON envelope（`jq .data.images` 解析，通道返回成本时 `data.cost` 透出）。
 
 ---
 
-## 项目结构
+## 🧠 底座
+
+- **五要素组装法则**：每条生产级 prompt = subject + material + light + lens/ratio + finish 的短生产简报（「材质优先于形容词」）
+- **编辑保真工艺**：change only X + preserve list 逐项写——模型不知道你的业务底线，漏写的项就是会被改掉的项
+- **文字渲染三招**：引号包裹 + ALL CAPS / 逐字母回退 / no extra words（官方 prompting guide 同款建议）
+- 详细原理见 `references/craft.md`（「为什么」层，不堆规则）
+
+---
+
+## 🏠 交流社区
+
+<div align="center">
+
+🎯 **更多 AI 实战教程和专属福利尽在我们「MBG 跨境AI实战圈」,已有 50+ 跨境大卖、AI 专家热聊中**
+
+—— 欢迎跨境电商从业者加入我们,一起探索 AI+商业的最佳实践和真实边界,跑通【跨境AI】的从 0 到 1,打败你的同事,干掉你的老板。
+
+**社区介绍:[mp.weixin.qq.com/s/dOz4fLmRnaFR7sD_TQm00Q](https://mp.weixin.qq.com/s/dOz4fLmRnaFR7sD_TQm00Q)**
+
+<img width="1125" height="618" alt="image" src="https://github.com/user-attachments/assets/20f47cd6-e33c-4f3e-9362-3846c11135fd" />
+
+</div>
+
+---
+
+## 📁 结构
 
 ```
 gpt-image2-ecommerce/
-├── SKILL.md                        # Skill 入口（Claude Code 工作流定义）
-├── README.md                       # 项目说明
-├── LICENSE                         # MIT 许可证
+├── SKILL.md                        # Skill 入口（7 步 workflow + 场景路由表）
+├── README.md / CHANGELOG.md / LICENSE
 ├── scripts/
-│   └── imagegen.sh                 # Codex CLI 调用脚本（混合模式）
-└── references/
-    └── templates/                  # 25 个场景提示词模板（JSON）
-        ├── 01-hero-image.json      # 白底主图
-        ├── 02-lifestyle-scene.json # 生活场景
-        ├── ...
-        └── 25-sports-campaign.json # 运动广告
+│   ├── imagegen.sh                 # 通道无关生成入口（api/manual/cli + 工程硬化）
+│   └── compliance_check.py         # 像素级合规自检
+├── references/
+│   ├── scenarios/                  # 39 个场景模板（JSON）
+│   ├── model-routing.md            # 2.5 双模型选型与成本心智
+│   ├── motion-gif.md               # 产品动图完整方法论
+│   ├── craft.md                    # 做图工艺原理（五要素/文字/编辑保真）
+│   ├── campaign-style-lock.md      # 套图一致性协议
+│   ├── funnel-set.md               # 套图编排漏斗
+│   ├── style-blacklist.md          # 品类×风格冲突 + slop 词
+│   └── platform-constraints.md     # 平台合规硬约束
+├── assets/                         # banner + 默认样式 Lock 基线
+└── evals/                          # 11 个测试用例
 ```
 
-## 工作原理
+## 🙏 Credits
 
-```
-用户输入（自然语言 + 可选产品图）
-    → 意图识别（场景类型 + 产品信息 + 风格偏好）
-    → 模板匹配（从 25 个模板中匹配最佳）
-    → Prompt 组装（填充变量 + 应用变体 + 精简输出）
-    → 调用生图（codex exec / HTTP 服务）
-    → 返回结果（清理临时文件 + 优化建议）
-```
-
-## Prompt 编写原则
-
-- **简洁为王**：只传核心信息，不过度约束
-- **自然语言优先**：Image2 理解描述性句子优于关键词堆砌
-- **材质描述**：明确写出纹理（磨砂玻璃、拉丝金属、哑光质感）
-- **光照很重要**：始终包含光照方向和质感
-- **善用参考图**：传入产品图可显著提升一致性
-
-## 许可证
-
-[MIT License](LICENSE) - 详见 LICENSE 文件
-
-## 联系方式
-
-**Buluu@新西楼**
-
-- **公众号**：新西楼 — AI+电商/广告行业实践，人与AI协作思考
-- **GitHub Issues**：https://github.com/buluslan/gpt-image2-ecommerce/issues
+- 产品动图方法论参考并改造自开源项目 [liangdabiao/product-motion-gif](https://github.com/liangdabiao/product-motion-gif)
+- 透明抠图配方来自 [OpenAI 官方 prompting guide](https://developers.openai.com/api/docs/guides/image-prompting)
 
 ---
 
-如果这个项目对您有帮助，请给一个 ⭐️
+## 📖 写在最后
 
-[![GitHub Stars](https://img.shields.io/github/stars/buluslan/gpt-image2-ecommerce?style=social)](https://github.com/buluslan/gpt-image2-ecommerce/stargazers)
+<div align="center">
+
+**如果这个工具帮到了你,欢迎 ⭐ Star 支持。更多 AI × 跨境电商实操内容,关注公众号「新西楼.AI」。**
+
+</div>
+
+---
+
+## 📜 License
+
+MIT License — 见 [LICENSE](LICENSE)

@@ -1,0 +1,106 @@
+{
+  "id": "edit-bg-swap",
+  "name": "换背景（保产品换场景）",
+  "keywords": [
+    "换背景",
+    "改背景",
+    "background swap",
+    "换场景",
+    "bg change",
+    "抠图换景",
+    "换底",
+    "背景替换"
+  ],
+  "trigger_phrases": [
+    "换背景",
+    "换个场景",
+    "background swap",
+    "保留产品换背景",
+    "把这个产品换个背景",
+    "换底图",
+    "抠图换景"
+  ],
+  "prompt_template": {
+    "type": "edit the supplied real product photograph; replace only the surrounding scene",
+    "subject": "Edit the supplied real product photograph. Replace only the surrounding scene with {new_background}. The product is {product_description}, identical to reference image",
+    "preserve": "Keep the product itself unchanged: preserve its exact shape, proportions, packaging, cap, logo, label text, material and visible details",
+    "integration": "match the new background lighting and contact shadows naturally",
+    "constraints_edit": "do not redesign, relabel, duplicate, or obscure the product",
+    "quality": "seamless composite, no edge halo"
+  },
+  "defaults": {
+    "background": "clean white seamless studio background",
+    "integration": "realistic drop shadow, ambient reflection"
+  },
+  "variants": {
+    "to-white": {
+      "description": "换纯白底（Amazon 主图合规底）",
+      "overrides": {
+        "background": "pure white seamless #FFFFFF, even studio lighting, no shadow edges",
+        "integration": "soft contact shadow only"
+      }
+    },
+    "to-scene": {
+      "description": "换生活场景（白底图→场景图）",
+      "overrides": {
+        "background": "{scene_description}, natural light",
+        "integration": "matching ambient light, realistic reflection and shadow"
+      }
+    },
+    "to-gradient": {
+      "description": "换渐变色底（品牌主图）",
+      "overrides": {
+        "background": "{color} gradient studio backdrop",
+        "integration": "studio rim light matching gradient tone"
+      }
+    },
+    "to-seasonal": {
+      "description": "换季节氛围（同产品不同节日底）",
+      "overrides": {
+        "background": "{seasonal_setting} with props (pine/snow or blossoms or maple)",
+        "integration": "matching seasonal lighting tone"
+      }
+    }
+  },
+  "category_tips": {
+    "beauty": "保留瓶身光泽、料体透明度、标签烫金；新背景补柔光与瓶身反光一致",
+    "electronics": "保留金属质感、屏幕内容、按键细节；新背景补冷光源与设备反光",
+    "food": "保留食品新鲜度、酱汁光泽；新背景补与食品色温匹配的环境光",
+    "fashion": "保留面料褶皱、纹理、缝线；新背景补与衣物色调协调的环境",
+    "home": "保留材质（木/陶瓷/金属）反射特性；新背景补家居环境光",
+    "jewelry": "保留切面反火、金属光泽；新背景补珠宝灯与环境反射",
+    "sports": "保留器材表面工艺（哑光/亮面）；新背景补运动场或户外光"
+  },
+  "examples": [
+    "Input: 护肤精华瓶纯白底图。Output: 同一只精华瓶（瓶身渐变、烫金 logo、料体高度完全一致），背景换成浅米色大理石台面 + 干燥薰衣草 + 晨光斜入，柔和接触阴影，逼真合成，1080x1350px",
+    "Input: 蓝牙耳机白色产品图。Output: 同一副耳机（金属外壳、网格细节、Logo 不变），背景换成深色木质书桌 + 笔记本 + 暖台灯环境光，设备表面反射与场景一致，2000x2000px",
+    "Input: 咖啡豆包装袋白底图。Output: 同一个包装袋（牛皮纸纹理、印刷、封口不变），背景换成咖啡店吧台 + 咖啡机蒸汽 + 暖黄环境光，包装袋受环境光影响自然，1080x1350px"
+  ],
+  "anti_ai_tips": "常见翻车：产品边缘出现白边/光晕、接触阴影方向与背景光源不一致、产品反光不随新背景变化（漂浮感）。修复：明确写出 'matching ambient reflection' 和 'no edge halo'。",
+  "supports_image_reference": true,
+  "platform_constraints": {
+    "amazon": {
+      "main_image_rule": "若换回纯白底用作主图，必须满足背景 RGB≥250/占比≥85%/无文字",
+      "note": "换白底后用 compliance_check.py 复核白度"
+    }
+  },
+  "ref_roles": [
+    {
+      "index": 0,
+      "role": "product master image — cut out and place onto new background",
+      "preserve": [
+        "product silhouette",
+        "brand logo",
+        "label text",
+        "base color",
+        "material texture",
+        "proportions",
+        "viewing angle",
+        "surface finish"
+      ],
+      "instruction": "The product in the output MUST be pixel-identical to the reference product: same shape, same color, same logo, same label, same texture, same viewing angle. Only the background and contact shadow may change."
+    }
+  ],
+  "campaign_id": "",
+  "model_hint": "gpt-image-2.5-sunburst"
+}

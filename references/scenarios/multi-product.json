@@ -1,0 +1,103 @@
+{
+  "id": "multi-product",
+  "name": "多产品套装/组合展示",
+  "keywords": [
+    "套装",
+    "组合",
+    "多产品",
+    "bundle",
+    "gift set",
+    "礼盒",
+    "系列展示"
+  ],
+  "trigger_phrases": [
+    "套装图",
+    "多产品展示",
+    "产品组合",
+    "bundle image",
+    "礼盒展示",
+    "系列图",
+    "gift set"
+  ],
+  "prompt_template": {
+    "type": "multi-product bundle photography",
+    "subject": "{product_set_description}",
+    "arrangement": "organized composition, all products clearly visible",
+    "background": "{background_description}",
+    "decorative": "{decorative_elements}",
+    "quality": "professional product photography,"
+  },
+  "defaults": {
+    "arrangement": "organized with consistent spacing, all visible, no overlap",
+    "background": "clean suitable for showcase",
+    "decorative": "luxury elements for gift-ready presentation"
+  },
+  "variants": {
+    "gift-set": {
+      "description": "礼盒套装",
+      "overrides": {
+        "arrangement": "products in gift box with cards",
+        "decorative": "satin ribbon, gold foil, dried flowers, pearls"
+      }
+    },
+    "routine-set": {
+      "description": "使用程序套装",
+      "overrides": {
+        "arrangement": "products in order of use, step indicators"
+      }
+    },
+    "lineup": {
+      "description": "产品线排列",
+      "overrides": {
+        "arrangement": "neat row, hero centered and larger",
+        "decorative": "minimal, clean",
+        "background": "white seamless"
+      }
+    }
+  },
+  "category_tips": {
+    "beauty": "complete routine (cleanser → toner → serum → cream), gift-ready",
+    "food": "product range, variety pack, flavor assortment",
+    "fashion": "outfit coordination pieces, colorway options",
+    "home": "collection of coordinating items"
+  },
+  "examples": [
+    "Luxury {category} gift set on premium surface: {product_list}. Organized composition with product cards. Scattered: gold foil, pearls, dried flowers, velvet ribbon. Bottom left: set description. Bottom right: price with original crossed out. Soft directional lighting, premium photography,",
+    "Premium {category} routine set. Main product centered, lid open showing texture. Surrounding: routine products arranged naturally. Soft background, decorative elements. Warm studio lighting, gift-ready, 2000x2000px",
+    "{category} gift set display. {n} products neat row, consistent spacing. Clean photography, soft shadows, professional bundle image, no text, 2000x2000px"
+  ],
+  "anti_ai_tips": "",
+  "supports_image_reference": true,
+  "platform_constraints": {
+    "amazon": {
+      "background": "flexible (A+ / secondary image, not main image)",
+      "foreground_ratio": "n/a (not main image)",
+      "no_text_logo": false,
+      "aspect": "1:1 or 4:5",
+      "min_size": "970px (A+ module) / 1000px",
+      "note": "套装组合展示,若含产品名/数量/价格标注则不适用 Amazon 主图。仅适用 A+ / 附图套装展示。纯组合摄影无文字时也可作附图。"
+    }
+  },
+  "text_assets": {
+    "brand_name": "{brand_name}",
+    "product_names": [
+      "{product_name_1}",
+      "{product_name_2}"
+    ],
+    "bundle_label": "{bundle_label}",
+    "price": "{bundle_price}"
+  },
+  "ref_roles": [
+    {
+      "index": 1,
+      "role": "product appearance reference",
+      "preserve": [
+        "logo",
+        "color",
+        "shape",
+        "texture"
+      ]
+    }
+  ],
+  "campaign_id": ""
+}
