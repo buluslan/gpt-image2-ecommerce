@@ -1,14 +1,14 @@
 ---
 name: ecom-image2
 description: >-
-  由 buluslan（公众号：新西楼.AI）研发的开源电商做图 Skill：39 个电商场景模板、Campaign 套图一致性、provider 模型路由与平台技术预检。通过用户配置的 OpenAI 兼容端点生成图片，或导出 prompt 包手动使用。Trigger whenever the user wants product main images, white-background packshots, lifestyle scenes, detail-page infographics, A+ modules, size specs, packaging, UGC, variant sets, seasonal campaigns, motion GIFs, bulk product swaps, bulk translation, transparent cutouts, or reference-image-consistent visuals. 中文用户说「做图/主图/场景图/A+/动图/抠图/换品」时同样适用。NOT for 视频剪辑、图片压缩、纯格式转换.
+  由 buluslan（公众号：新西楼.AI）研发的开源电商做图 Skill：39 个电商场景模板、Campaign 套图一致性、GPT-Image-2.5 官方双模型路由（Flare/Sunburst）与平台技术预检。通过用户配置的 OpenAI 兼容端点生成图片，或导出 prompt 包手动使用。Trigger whenever the user wants product main images, white-background packshots, lifestyle scenes, detail-page infographics, A+ modules, size specs, packaging, UGC, variant sets, seasonal campaigns, motion GIFs, bulk product swaps, bulk translation, transparent cutouts, or reference-image-consistent visuals. 中文用户说「做图/主图/场景图/A+/动图/抠图/换品」时同样适用。NOT for 视频剪辑、图片压缩、纯格式转换.
 allowed-tools:
   - Bash(bash *)
   - Bash(python3 *)
   - Read
   - Write
 metadata:
-  version: 0.3.1
+  version: 0.3.2
   category: e-commerce/image-generation
   license: MIT
   compatibility: 'Provider-agnostic via `--mode` (default `auto`: api > manual). (a) api mode — ANY OpenAI-compatible endpoint via env: `$IMAGE_API_BASE` (default https://api.openai.com) + `$IMAGE_API_KEY` (legacy `$OPENAI_API_KEY` respected) + `$IMAGE_MODEL` (default gpt-image-2.5-flare); works with official OpenAI, relays, and cloud gateways; reference images ride in `image_urls` with automatic `/v1/images/edits` multipart fallback. (b) manual mode — zero-channel: exports a prompt pack (prompt.txt + request.json) to paste into ChatGPT or curl yourself. (c) cli mode (codex exec) — DEPRECATED legacy. bash 3.2+ + jq + curl. Tested on Mac/Linux. Optional for the compliance_check script (Step 7): Python 3.9+ + Pillow 10.x (arm64 native — re-install with `arch -arm64 pip3 install --force-reinstall Pillow` if `_imaging.so` fails to load) and tesseract + pytesseract (OCR auto-degrades when missing).'
@@ -136,7 +136,7 @@ metadata:
 
 **ref_roles 手动注入**：模板若含 `ref_roles`（用参考图的模板 + edit 矩阵），在 prompt 中生成 `Image N: <role>` + preserve list（如 `Image 1: product appearance reference, preserve: logo, color, shape, texture`）。**edit 类模板必须明确保留项**——preserve 字段用于降低产品外观的无关变化，但不能保证像素级不变。编辑类 prompt 的黄金结构见 `references/craft.md` 第七节。
 
-### Step 5.5: Provider 模型路由
+### Step 5.5: GPT-Image-2.5 官方双模型路由
 
 三问定夺（完整规则+成本心智 → `references/model-routing.md`）：
 
@@ -144,11 +144,11 @@ metadata:
 |---|---|
 | 这张图要保住产品细节（标签/logo/形状）吗？ | **sunburst** |
 | 这是直接上架/投放的定稿吗？ | **sunburst** |
-| 只是过程稿 / 批量探索？ | **flare**（若端点提供该别名） |
+| 只是过程稿 / 批量探索？ | **flare**（官方默认选择，速度优先） |
 
 - 模板 `model_hint` 字段携带该场景的建议模型（edit 类/质量敏感类已标 sunburst），组装说明里透传给用户
 - 选型是建议不是强制：用户通道若只有 `gpt-image-2`，路由逻辑照常工作
-- 模型名、quality 档和价格均由端点决定；不支持建议别名时，使用端点文档列出的等价模型
+- 官方模型 ID 为 `gpt-image-2.5-flare` 与 `gpt-image-2.5-sunburst`；第三方兼容端点可能尚未同步开放，调用前检查其模型列表
 
 ### Step 6: 图像生成
 

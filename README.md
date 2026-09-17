@@ -13,10 +13,10 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-SKILL-blueviolet.svg)](https://docs.anthropic.com/en/docs/claude-code)
 [![Bash](https://img.shields.io/badge/bash-3.2%2B-green.svg)]()
-[![Version](https://img.shields.io/badge/version-0.3.1-black.svg)]()
-[![Image API](https://img.shields.io/badge/Image%20API-provider--configured-0d9488.svg)]()
+[![Version](https://img.shields.io/badge/version-0.3.2-black.svg)]()
+[![GPT-Image-2.5](https://img.shields.io/badge/GPT--Image-2.5-Flare%20%2F%20Sunburst-0d9488.svg)]()
 
-**39个电商场景模板 · Provider模型路由 · Campaign套图一致性 · 平台技术预检 · Edit矩阵 · 产品动图 · 反AI感双层过滤**
+**39个电商场景模板 · GPT-Image-2.5双模型路由 · Campaign套图一致性 · 平台技术预检 · Edit矩阵 · 产品动图 · 反AI感双层过滤**
 
 **Created By Buluu@新西楼.AI**
 
@@ -51,9 +51,9 @@
 
 （完整触发词路由表见 SKILL.md Step 2）
 
-### Provider 模型路由
+### GPT-Image-2.5 双模型路由
 
-如果你的服务商提供 **Flare / Sunburst** 这类模型别名，Skill 会按“探索草稿 / 保真定稿”给出路由建议；它们不是所有 OpenAI 兼容端点都具备的标准模型名。最终可用模型、质量档和价格以你所用端点的文档与实时账单为准，详见 `references/model-routing.md`。
+OpenAI 官方提供两个 GPT-Image-2.5 模型：**Flare** 是多数任务的默认选择，面向快速、高质量的日常生成；**Sunburst** 面向需要更强编辑控制和成品精度的专业工作流。Skill 会按“快速生成 / 精细编辑”自动建议模型；使用第三方兼容端点时，仍需确认端点已开放对应官方模型 ID。详见 `references/model-routing.md`。
 
 ### 平台技术预检
 
